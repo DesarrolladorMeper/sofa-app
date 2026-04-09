@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model usuarios {
+  id_usuario       Int              @id @default(autoincrement())
+  email            String           @unique
+  numero_documento String           @unique
+  roles            usuarios_roles[]
+}
+
+model roles {
+  id_roles       Int              @id @default(autoincrement())
+  nombre_rol     String           @unique
+  permisos_roles permisos_roles[]
+  usuarios       usuarios_roles[]
+}
+
+model usuarios_roles {
+  id_roles   Int
+  id_usuario Int
+  roles      roles    @relation(fields: [id_roles], references: [id_roles])
+  usuarios   usuarios @relation(fields: [id_usuario], references: [id_usuario])
+
+  @@id([id_usuario, id_roles])
+  @@index([id_roles], map: "usuariosroles_id_roles_fkey")
+}
+
+model permisos_roles {
+  idPermiso Int     @id @default(autoincrement())
+  id_roles  Int
+  modulo    String  @db.VarChar(50)
+  ver       Boolean @default(false)
+  roles     roles   @relation(fields: [id_roles], references: [id_roles], onDelete: NoAction, onUpdate: NoAction, map: "fk_permisosrol_rol")
+
+  @@unique([id_roles, modulo], map: "unique_rol_modulo")
+}
+
+model seccion_categoria_presupuesto {
+  id_seccion_categoria_presupuesto Int                     @id @default(autoincrement())
+  nombre_seccion_categoria         String                  @unique
+  categorias_presupuesto           categoria_presupuesto[]
+}
+
+model categoria_presupuesto {
+  id_categoria_presupuesto        Int                            @id @default(autoincrement())
+  nombre_categoria                String                         @unique
+  seccion_categoria_presupuestoId Int?
+  activa                          Boolean                        @default(false)
+  seccion_categoria_presupuesto   seccion_categoria_presupuesto? @relation(fields: [seccion_categoria_presupuestoId], references: [id_seccion_categoria_presupuesto])
+  obligaciones                    obligaciones[]
+
+  @@index([seccion_categoria_presupuestoId], map: "categoria_presupuesto_seccion_categoria_presupuestoId_fkey")
+}
+
+model comercial {
+  id_comercial             Int        @id @default(autoincrement())
+  username                 String     @unique
+  tiene_comision_comercial Boolean
+  porcentaje_comision      Float?
+  contratos                contrato[]
+  facturas                 factura[]
+}
+
+model contrato {
+  id_contrato               Int       @id @default(autoincrement())
+  clienteId                 Int
+  cliente_nombre_somos      String
+  numero_contrato           String    @unique
+  mes_contrato              String
+  fecha_vencimiento_factura DateTime  @db.Date
+  fecha_generacion_factura  DateTime  @db.Date
+  finalizacion_contrato     DateTime  @db.Date
+  comercialId               Int
+  comercial                 comercial @relation(fields: [comercialId], references: [id_comercial])
+  facturas                  factura[]
+
+  @@index([comercialId], map: "contrato_comercialId_fkey")
+}
+
+model factura {
+  id_factura               Int       @id @default(autoincrement())
+  numero_factura           String    @unique
+  tipo_servicio            String
+  fecha_vencimiento        DateTime  @db.Date
+  fecha_generacion_factura DateTime  @db.Date
+  va_con_iva               Boolean
+  valor_sin_iva            BigInt
+  valor_iva                BigInt
+  valor_total              BigInt
+  
+  estado_factura           String
+  fecha_pago_factura       DateTime? @db.Date
+  valor_comision           BigInt?
+  
+  comercialId              Int?
+  contratoId               Int?
+  comercial                comercial? @relation(fields: [comercialId], references: [id_comercial])
+  contrato                 contrato?  @relation(fields: [contratoId], references: [id_contrato])
+
+  @@index([comercialId], map: "factura_comercialId_fkey")
+  @@index([contratoId], map: "factura_contratoId_fkey")
+}
+
+model obligaciones {
+  id_obligacion               Int      @id @default(autoincrement())
+  fecha                       DateTime @db.Date
+  idCategoria_presupuesto     Int?
+  entidad                     String
+  servicio_producto           String
+  factura_cuenta_cobro        String?
+  valor_obligacion            BigInt
+  valor_pagado                BigInt?
+  
+  soporte_numero_carpeta      String?
+  fecha_programada_pago       DateTime @db.Date
+  estado                      String
+  fecha_pago                  DateTime? @db.Date
+  soporte_pago_numero_carpeta String?
+  observaciones               String?
+
+  categoria_presupuesto       categoria_presupuesto? @relation(fields: [idCategoria_presupuesto], references: [id_categoria_presupuesto])
+}
