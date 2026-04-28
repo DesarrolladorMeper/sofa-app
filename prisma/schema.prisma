@@ -68,16 +68,21 @@ model comercial {
 }
 
 model contrato {
-  id_contrato               Int       @id @default(autoincrement())
+  id_contrato               Int        @id @default(autoincrement())
   clienteId                 Int
   cliente_nombre_somos      String
-  numero_contrato           String    @unique
+  numero_contrato           String     @unique
   mes_contrato              String
-  fecha_vencimiento_factura DateTime  @db.Date
-  fecha_generacion_factura  DateTime  @db.Date
-  finalizacion_contrato     DateTime  @db.Date
-  comercialId               Int
-  comercial                 comercial @relation(fields: [comercialId], references: [id_comercial])
+  fecha_vencimiento_factura DateTime   @db.Date
+  fecha_generacion_factura  DateTime   @db.Date
+  finalizacion_contrato     DateTime   @db.Date
+  valor                     BigInt
+  tiene_iva                 Boolean    @default(false)
+  estado                    String     @default("ACTIVO")
+  observaciones             String?    @db.Text
+  esta_facturado            Boolean    @default(false)
+  comercialId               Int?
+  comercial                 comercial? @relation(fields: [comercialId], references: [id_comercial])
   facturas                  factura[]
 
   @@index([comercialId], map: "contrato_comercialId_fkey")
