@@ -141,7 +141,7 @@ export default function PersonalPage() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-xl font-bold text-gray-800">Personal</h1>
-          <p className="text-sm text-gray-400 mt-0.5">Gestión del equipo comercial y consultores</p>
+          <p className="text-sm text-gray-400 mt-0.5">Gestión Humana — equipo comercial y consultores</p>
         </div>
         <button
           onClick={() => { setEditando(null); setModalOpen(true); }}
