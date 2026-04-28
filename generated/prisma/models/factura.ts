@@ -685,24 +685,8 @@ export type facturaUncheckedUpdateManyWithoutContratoNestedInput = {
   deleteMany?: Prisma.facturaScalarWhereInput | Prisma.facturaScalarWhereInput[]
 }
 
-export type BigIntFieldUpdateOperationsInput = {
-  set?: bigint | number
-  increment?: bigint | number
-  decrement?: bigint | number
-  multiply?: bigint | number
-  divide?: bigint | number
-}
-
-export type NullableDateTimeFieldUpdateOperationsInput = {
-  set?: Date | string | null
-}
-
-export type NullableBigIntFieldUpdateOperationsInput = {
-  set?: bigint | number | null
-  increment?: bigint | number
-  decrement?: bigint | number
-  multiply?: bigint | number
-  divide?: bigint | number
+export type DateTimeFieldUpdateOperationsInput = {
+  set?: Date | string
 }
 
 export type facturaCreateWithoutComercialInput = {

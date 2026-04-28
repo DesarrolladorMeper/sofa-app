@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { toast } from "sonner";
-import { Contrato, Comercial, ClienteSugerencia, ESTADOS_CONTRATO } from "./contratos-types";
+import { Contrato, Comercial, ClienteSugerencia, ESTADOS_CONTRATO, TIPOS_SERVICIO } from "./contratos-types";
 
 type Props = {
   onClose: () => void;
@@ -17,6 +17,7 @@ const VACÍO = {
   cliente_nombre_somos: "",
   numero_contrato: "",
   pte: "",
+  tipo_servicio: "",
   meses_contrato: "",
   cantidad_horas_contrato: "",
   fecha_inicio: "",
@@ -96,6 +97,7 @@ export default function NuevoContratoModal({ onClose, onGuardado, contratoEditar
         cliente_nombre_somos: contratoEditar.cliente_nombre_somos,
         numero_contrato: contratoEditar.numero_contrato,
         pte: contratoEditar.pte ?? "",
+        tipo_servicio: contratoEditar.tipo_servicio ?? "",
         meses_contrato: contratoEditar.meses_contrato != null ? String(contratoEditar.meses_contrato) : "",
         cantidad_horas_contrato: contratoEditar.cantidad_horas_contrato != null ? String(contratoEditar.cantidad_horas_contrato) : "",
         fecha_inicio: toISO(contratoEditar.fecha_inicio),
@@ -235,14 +237,21 @@ export default function NuevoContratoModal({ onClose, onGuardado, contratoEditar
           {/* ── Sección 2: Datos del contrato ── */}
           <div>
             <p className={sec}>Datos del contrato</p>
-            <div className="grid grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-4 gap-4 mb-4">
               <div>
                 <label className={lbl}>No. Contrato *</label>
                 <input className={inp} value={form.numero_contrato} onChange={(e) => set("numero_contrato", e.target.value)} placeholder="ej. OS-2026-001" required />
               </div>
               <div>
                 <label className={lbl}>PTE</label>
-                <input className={inp} value={form.pte} onChange={(e) => set("pte", e.target.value)} placeholder="PTE" />
+                <input className={inp} value={form.pte} onChange={(e) => set("pte", e.target.value)} placeholder="PTE994" />
+              </div>
+              <div>
+                <label className={lbl}>Tipo de Servicio</label>
+                <select className={inp} value={form.tipo_servicio} onChange={(e) => set("tipo_servicio", e.target.value)}>
+                  <option value="">Sin especificar</option>
+                  {TIPOS_SERVICIO.map((t) => <option key={t} value={t}>{t}</option>)}
+                </select>
               </div>
               <div>
                 <label className={lbl}>Estado</label>

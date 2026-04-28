@@ -16,6 +16,7 @@ export type Contrato = {
   cliente_nombre_somos: string;
   numero_contrato: string;
   pte: string | null;
+  tipo_servicio: string | null;
   meses_contrato: number | null;
   cantidad_horas_contrato: number | null;
   fecha_inicio: string | null;
@@ -49,4 +50,5 @@ export type FiltrosContrato = {
   fechaHasta: string;
 };
 
-export const ESTADOS_CONTRATO = ["ACTIVO", "PENDIENTE", "VENCIDO", "CANCELADO"] as const;
+export const ESTADOS_CONTRATO = ["ACTIVO", "SUSPENDIDO", "VENCIDO", "CANCELADO"] as const;
+export const TIPOS_SERVICIO = ["Consultoría", "Inspectoría", "SST"] as const;

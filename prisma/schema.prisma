@@ -74,6 +74,7 @@ model contrato {
   cliente_nombre_somos      String
   numero_contrato           String     @unique
   pte                       String?
+  tipo_servicio             String?
   mes_contrato              String?
   meses_contrato            Int?
   cantidad_horas_contrato   Float?

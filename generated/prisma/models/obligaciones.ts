@@ -623,10 +623,6 @@ export type obligacionesUncheckedUpdateManyWithoutCategoria_presupuestoNestedInp
   deleteMany?: Prisma.obligacionesScalarWhereInput | Prisma.obligacionesScalarWhereInput[]
 }
 
-export type NullableStringFieldUpdateOperationsInput = {
-  set?: string | null
-}
-
 export type obligacionesCreateWithoutCategoria_presupuestoInput = {
   fecha: Date | string
   entidad: string

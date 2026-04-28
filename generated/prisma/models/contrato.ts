@@ -29,48 +29,112 @@ export type AggregateContrato = {
 export type ContratoAvgAggregateOutputType = {
   id_contrato: number | null
   clienteId: number | null
+  meses_contrato: number | null
+  cantidad_horas_contrato: number | null
+  valor: number | null
+  costos: number | null
+  auditoria: number | null
+  imprevistos: number | null
+  rent: number | null
+  total_proyecto: number | null
   comercialId: number | null
 }
 
 export type ContratoSumAggregateOutputType = {
   id_contrato: number | null
   clienteId: number | null
+  meses_contrato: number | null
+  cantidad_horas_contrato: number | null
+  valor: bigint | null
+  costos: bigint | null
+  auditoria: bigint | null
+  imprevistos: bigint | null
+  rent: bigint | null
+  total_proyecto: bigint | null
   comercialId: number | null
 }
 
 export type ContratoMinAggregateOutputType = {
   id_contrato: number | null
+  nit: string | null
   clienteId: number | null
   cliente_nombre_somos: string | null
   numero_contrato: string | null
+  pte: string | null
+  tipo_servicio: string | null
   mes_contrato: string | null
+  meses_contrato: number | null
+  cantidad_horas_contrato: number | null
+  fecha_inicio: Date | null
   fecha_vencimiento_factura: Date | null
   fecha_generacion_factura: Date | null
   finalizacion_contrato: Date | null
+  valor: bigint | null
+  tiene_iva: boolean | null
+  costos: bigint | null
+  auditoria: bigint | null
+  imprevistos: bigint | null
+  rent: bigint | null
+  total_proyecto: bigint | null
+  estado: string | null
+  observaciones: string | null
+  esta_facturado: boolean | null
   comercialId: number | null
 }
 
 export type ContratoMaxAggregateOutputType = {
   id_contrato: number | null
+  nit: string | null
   clienteId: number | null
   cliente_nombre_somos: string | null
   numero_contrato: string | null
+  pte: string | null
+  tipo_servicio: string | null
   mes_contrato: string | null
+  meses_contrato: number | null
+  cantidad_horas_contrato: number | null
+  fecha_inicio: Date | null
   fecha_vencimiento_factura: Date | null
   fecha_generacion_factura: Date | null
   finalizacion_contrato: Date | null
+  valor: bigint | null
+  tiene_iva: boolean | null
+  costos: bigint | null
+  auditoria: bigint | null
+  imprevistos: bigint | null
+  rent: bigint | null
+  total_proyecto: bigint | null
+  estado: string | null
+  observaciones: string | null
+  esta_facturado: boolean | null
   comercialId: number | null
 }
 
 export type ContratoCountAggregateOutputType = {
   id_contrato: number
+  nit: number
   clienteId: number
   cliente_nombre_somos: number
   numero_contrato: number
+  pte: number
+  tipo_servicio: number
   mes_contrato: number
+  meses_contrato: number
+  cantidad_horas_contrato: number
+  fecha_inicio: number
   fecha_vencimiento_factura: number
   fecha_generacion_factura: number
   finalizacion_contrato: number
+  valor: number
+  tiene_iva: number
+  costos: number
+  auditoria: number
+  imprevistos: number
+  rent: number
+  total_proyecto: number
+  estado: number
+  observaciones: number
+  esta_facturado: number
   comercialId: number
   _all: number
 }
@@ -79,48 +143,112 @@ export type ContratoCountAggregateOutputType = {
 export type ContratoAvgAggregateInputType = {
   id_contrato?: true
   clienteId?: true
+  meses_contrato?: true
+  cantidad_horas_contrato?: true
+  valor?: true
+  costos?: true
+  auditoria?: true
+  imprevistos?: true
+  rent?: true
+  total_proyecto?: true
   comercialId?: true
 }
 
 export type ContratoSumAggregateInputType = {
   id_contrato?: true
   clienteId?: true
+  meses_contrato?: true
+  cantidad_horas_contrato?: true
+  valor?: true
+  costos?: true
+  auditoria?: true
+  imprevistos?: true
+  rent?: true
+  total_proyecto?: true
   comercialId?: true
 }
 
 export type ContratoMinAggregateInputType = {
   id_contrato?: true
+  nit?: true
   clienteId?: true
   cliente_nombre_somos?: true
   numero_contrato?: true
+  pte?: true
+  tipo_servicio?: true
   mes_contrato?: true
+  meses_contrato?: true
+  cantidad_horas_contrato?: true
+  fecha_inicio?: true
   fecha_vencimiento_factura?: true
   fecha_generacion_factura?: true
   finalizacion_contrato?: true
+  valor?: true
+  tiene_iva?: true
+  costos?: true
+  auditoria?: true
+  imprevistos?: true
+  rent?: true
+  total_proyecto?: true
+  estado?: true
+  observaciones?: true
+  esta_facturado?: true
   comercialId?: true
 }
 
 export type ContratoMaxAggregateInputType = {
   id_contrato?: true
+  nit?: true
   clienteId?: true
   cliente_nombre_somos?: true
   numero_contrato?: true
+  pte?: true
+  tipo_servicio?: true
   mes_contrato?: true
+  meses_contrato?: true
+  cantidad_horas_contrato?: true
+  fecha_inicio?: true
   fecha_vencimiento_factura?: true
   fecha_generacion_factura?: true
   finalizacion_contrato?: true
+  valor?: true
+  tiene_iva?: true
+  costos?: true
+  auditoria?: true
+  imprevistos?: true
+  rent?: true
+  total_proyecto?: true
+  estado?: true
+  observaciones?: true
+  esta_facturado?: true
   comercialId?: true
 }
 
 export type ContratoCountAggregateInputType = {
   id_contrato?: true
+  nit?: true
   clienteId?: true
   cliente_nombre_somos?: true
   numero_contrato?: true
+  pte?: true
+  tipo_servicio?: true
   mes_contrato?: true
+  meses_contrato?: true
+  cantidad_horas_contrato?: true
+  fecha_inicio?: true
   fecha_vencimiento_factura?: true
   fecha_generacion_factura?: true
   finalizacion_contrato?: true
+  valor?: true
+  tiene_iva?: true
+  costos?: true
+  auditoria?: true
+  imprevistos?: true
+  rent?: true
+  total_proyecto?: true
+  estado?: true
+  observaciones?: true
+  esta_facturado?: true
   comercialId?: true
   _all?: true
 }
@@ -213,14 +341,30 @@ export type contratoGroupByArgs<ExtArgs extends runtime.Types.Extensions.Interna
 
 export type ContratoGroupByOutputType = {
   id_contrato: number
+  nit: string | null
   clienteId: number
   cliente_nombre_somos: string
   numero_contrato: string
-  mes_contrato: string
-  fecha_vencimiento_factura: Date
-  fecha_generacion_factura: Date
-  finalizacion_contrato: Date
-  comercialId: number
+  pte: string | null
+  tipo_servicio: string | null
+  mes_contrato: string | null
+  meses_contrato: number | null
+  cantidad_horas_contrato: number | null
+  fecha_inicio: Date | null
+  fecha_vencimiento_factura: Date | null
+  fecha_generacion_factura: Date | null
+  finalizacion_contrato: Date | null
+  valor: bigint
+  tiene_iva: boolean
+  costos: bigint | null
+  auditoria: bigint | null
+  imprevistos: bigint | null
+  rent: bigint | null
+  total_proyecto: bigint | null
+  estado: string
+  observaciones: string | null
+  esta_facturado: boolean
+  comercialId: number | null
   _count: ContratoCountAggregateOutputType | null
   _avg: ContratoAvgAggregateOutputType | null
   _sum: ContratoSumAggregateOutputType | null
@@ -248,28 +392,60 @@ export type contratoWhereInput = {
   OR?: Prisma.contratoWhereInput[]
   NOT?: Prisma.contratoWhereInput | Prisma.contratoWhereInput[]
   id_contrato?: Prisma.IntFilter<"contrato"> | number
+  nit?: Prisma.StringNullableFilter<"contrato"> | string | null
   clienteId?: Prisma.IntFilter<"contrato"> | number
   cliente_nombre_somos?: Prisma.StringFilter<"contrato"> | string
   numero_contrato?: Prisma.StringFilter<"contrato"> | string
-  mes_contrato?: Prisma.StringFilter<"contrato"> | string
-  fecha_vencimiento_factura?: Prisma.DateTimeFilter<"contrato"> | Date | string
-  fecha_generacion_factura?: Prisma.DateTimeFilter<"contrato"> | Date | string
-  finalizacion_contrato?: Prisma.DateTimeFilter<"contrato"> | Date | string
-  comercialId?: Prisma.IntFilter<"contrato"> | number
-  comercial?: Prisma.XOR<Prisma.ComercialScalarRelationFilter, Prisma.comercialWhereInput>
+  pte?: Prisma.StringNullableFilter<"contrato"> | string | null
+  tipo_servicio?: Prisma.StringNullableFilter<"contrato"> | string | null
+  mes_contrato?: Prisma.StringNullableFilter<"contrato"> | string | null
+  meses_contrato?: Prisma.IntNullableFilter<"contrato"> | number | null
+  cantidad_horas_contrato?: Prisma.FloatNullableFilter<"contrato"> | number | null
+  fecha_inicio?: Prisma.DateTimeNullableFilter<"contrato"> | Date | string | null
+  fecha_vencimiento_factura?: Prisma.DateTimeNullableFilter<"contrato"> | Date | string | null
+  fecha_generacion_factura?: Prisma.DateTimeNullableFilter<"contrato"> | Date | string | null
+  finalizacion_contrato?: Prisma.DateTimeNullableFilter<"contrato"> | Date | string | null
+  valor?: Prisma.BigIntFilter<"contrato"> | bigint | number
+  tiene_iva?: Prisma.BoolFilter<"contrato"> | boolean
+  costos?: Prisma.BigIntNullableFilter<"contrato"> | bigint | number | null
+  auditoria?: Prisma.BigIntNullableFilter<"contrato"> | bigint | number | null
+  imprevistos?: Prisma.BigIntNullableFilter<"contrato"> | bigint | number | null
+  rent?: Prisma.BigIntNullableFilter<"contrato"> | bigint | number | null
+  total_proyecto?: Prisma.BigIntNullableFilter<"contrato"> | bigint | number | null
+  estado?: Prisma.StringFilter<"contrato"> | string
+  observaciones?: Prisma.StringNullableFilter<"contrato"> | string | null
+  esta_facturado?: Prisma.BoolFilter<"contrato"> | boolean
+  comercialId?: Prisma.IntNullableFilter<"contrato"> | number | null
+  comercial?: Prisma.XOR<Prisma.ComercialNullableScalarRelationFilter, Prisma.comercialWhereInput> | null
   facturas?: Prisma.FacturaListRelationFilter
 }
 
 export type contratoOrderByWithRelationInput = {
   id_contrato?: Prisma.SortOrder
+  nit?: Prisma.SortOrderInput | Prisma.SortOrder
   clienteId?: Prisma.SortOrder
   cliente_nombre_somos?: Prisma.SortOrder
   numero_contrato?: Prisma.SortOrder
-  mes_contrato?: Prisma.SortOrder
-  fecha_vencimiento_factura?: Prisma.SortOrder
-  fecha_generacion_factura?: Prisma.SortOrder
-  finalizacion_contrato?: Prisma.SortOrder
-  comercialId?: Prisma.SortOrder
+  pte?: Prisma.SortOrderInput | Prisma.SortOrder
+  tipo_servicio?: Prisma.SortOrderInput | Prisma.SortOrder
+  mes_contrato?: Prisma.SortOrderInput | Prisma.SortOrder
+  meses_contrato?: Prisma.SortOrderInput | Prisma.SortOrder
+  cantidad_horas_contrato?: Prisma.SortOrderInput | Prisma.SortOrder
+  fecha_inicio?: Prisma.SortOrderInput | Prisma.SortOrder
+  fecha_vencimiento_factura?: Prisma.SortOrderInput | Prisma.SortOrder
+  fecha_generacion_factura?: Prisma.SortOrderInput | Prisma.SortOrder
+  finalizacion_contrato?: Prisma.SortOrderInput | Prisma.SortOrder
+  valor?: Prisma.SortOrder
+  tiene_iva?: Prisma.SortOrder
+  costos?: Prisma.SortOrderInput | Prisma.SortOrder
+  auditoria?: Prisma.SortOrderInput | Prisma.SortOrder
+  imprevistos?: Prisma.SortOrderInput | Prisma.SortOrder
+  rent?: Prisma.SortOrderInput | Prisma.SortOrder
+  total_proyecto?: Prisma.SortOrderInput | Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  observaciones?: Prisma.SortOrderInput | Prisma.SortOrder
+  esta_facturado?: Prisma.SortOrder
+  comercialId?: Prisma.SortOrderInput | Prisma.SortOrder
   comercial?: Prisma.comercialOrderByWithRelationInput
   facturas?: Prisma.facturaOrderByRelationAggregateInput
   _relevance?: Prisma.contratoOrderByRelevanceInput
@@ -281,27 +457,59 @@ export type contratoWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.contratoWhereInput | Prisma.contratoWhereInput[]
   OR?: Prisma.contratoWhereInput[]
   NOT?: Prisma.contratoWhereInput | Prisma.contratoWhereInput[]
+  nit?: Prisma.StringNullableFilter<"contrato"> | string | null
   clienteId?: Prisma.IntFilter<"contrato"> | number
   cliente_nombre_somos?: Prisma.StringFilter<"contrato"> | string
-  mes_contrato?: Prisma.StringFilter<"contrato"> | string
-  fecha_vencimiento_factura?: Prisma.DateTimeFilter<"contrato"> | Date | string
-  fecha_generacion_factura?: Prisma.DateTimeFilter<"contrato"> | Date | string
-  finalizacion_contrato?: Prisma.DateTimeFilter<"contrato"> | Date | string
-  comercialId?: Prisma.IntFilter<"contrato"> | number
-  comercial?: Prisma.XOR<Prisma.ComercialScalarRelationFilter, Prisma.comercialWhereInput>
+  pte?: Prisma.StringNullableFilter<"contrato"> | string | null
+  tipo_servicio?: Prisma.StringNullableFilter<"contrato"> | string | null
+  mes_contrato?: Prisma.StringNullableFilter<"contrato"> | string | null
+  meses_contrato?: Prisma.IntNullableFilter<"contrato"> | number | null
+  cantidad_horas_contrato?: Prisma.FloatNullableFilter<"contrato"> | number | null
+  fecha_inicio?: Prisma.DateTimeNullableFilter<"contrato"> | Date | string | null
+  fecha_vencimiento_factura?: Prisma.DateTimeNullableFilter<"contrato"> | Date | string | null
+  fecha_generacion_factura?: Prisma.DateTimeNullableFilter<"contrato"> | Date | string | null
+  finalizacion_contrato?: Prisma.DateTimeNullableFilter<"contrato"> | Date | string | null
+  valor?: Prisma.BigIntFilter<"contrato"> | bigint | number
+  tiene_iva?: Prisma.BoolFilter<"contrato"> | boolean
+  costos?: Prisma.BigIntNullableFilter<"contrato"> | bigint | number | null
+  auditoria?: Prisma.BigIntNullableFilter<"contrato"> | bigint | number | null
+  imprevistos?: Prisma.BigIntNullableFilter<"contrato"> | bigint | number | null
+  rent?: Prisma.BigIntNullableFilter<"contrato"> | bigint | number | null
+  total_proyecto?: Prisma.BigIntNullableFilter<"contrato"> | bigint | number | null
+  estado?: Prisma.StringFilter<"contrato"> | string
+  observaciones?: Prisma.StringNullableFilter<"contrato"> | string | null
+  esta_facturado?: Prisma.BoolFilter<"contrato"> | boolean
+  comercialId?: Prisma.IntNullableFilter<"contrato"> | number | null
+  comercial?: Prisma.XOR<Prisma.ComercialNullableScalarRelationFilter, Prisma.comercialWhereInput> | null
   facturas?: Prisma.FacturaListRelationFilter
 }, "id_contrato" | "numero_contrato">
 
 export type contratoOrderByWithAggregationInput = {
   id_contrato?: Prisma.SortOrder
+  nit?: Prisma.SortOrderInput | Prisma.SortOrder
   clienteId?: Prisma.SortOrder
   cliente_nombre_somos?: Prisma.SortOrder
   numero_contrato?: Prisma.SortOrder
-  mes_contrato?: Prisma.SortOrder
-  fecha_vencimiento_factura?: Prisma.SortOrder
-  fecha_generacion_factura?: Prisma.SortOrder
-  finalizacion_contrato?: Prisma.SortOrder
-  comercialId?: Prisma.SortOrder
+  pte?: Prisma.SortOrderInput | Prisma.SortOrder
+  tipo_servicio?: Prisma.SortOrderInput | Prisma.SortOrder
+  mes_contrato?: Prisma.SortOrderInput | Prisma.SortOrder
+  meses_contrato?: Prisma.SortOrderInput | Prisma.SortOrder
+  cantidad_horas_contrato?: Prisma.SortOrderInput | Prisma.SortOrder
+  fecha_inicio?: Prisma.SortOrderInput | Prisma.SortOrder
+  fecha_vencimiento_factura?: Prisma.SortOrderInput | Prisma.SortOrder
+  fecha_generacion_factura?: Prisma.SortOrderInput | Prisma.SortOrder
+  finalizacion_contrato?: Prisma.SortOrderInput | Prisma.SortOrder
+  valor?: Prisma.SortOrder
+  tiene_iva?: Prisma.SortOrder
+  costos?: Prisma.SortOrderInput | Prisma.SortOrder
+  auditoria?: Prisma.SortOrderInput | Prisma.SortOrder
+  imprevistos?: Prisma.SortOrderInput | Prisma.SortOrder
+  rent?: Prisma.SortOrderInput | Prisma.SortOrder
+  total_proyecto?: Prisma.SortOrderInput | Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  observaciones?: Prisma.SortOrderInput | Prisma.SortOrder
+  esta_facturado?: Prisma.SortOrder
+  comercialId?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.contratoCountOrderByAggregateInput
   _avg?: Prisma.contratoAvgOrderByAggregateInput
   _max?: Prisma.contratoMaxOrderByAggregateInput
@@ -314,98 +522,226 @@ export type contratoScalarWhereWithAggregatesInput = {
   OR?: Prisma.contratoScalarWhereWithAggregatesInput[]
   NOT?: Prisma.contratoScalarWhereWithAggregatesInput | Prisma.contratoScalarWhereWithAggregatesInput[]
   id_contrato?: Prisma.IntWithAggregatesFilter<"contrato"> | number
+  nit?: Prisma.StringNullableWithAggregatesFilter<"contrato"> | string | null
   clienteId?: Prisma.IntWithAggregatesFilter<"contrato"> | number
   cliente_nombre_somos?: Prisma.StringWithAggregatesFilter<"contrato"> | string
   numero_contrato?: Prisma.StringWithAggregatesFilter<"contrato"> | string
-  mes_contrato?: Prisma.StringWithAggregatesFilter<"contrato"> | string
-  fecha_vencimiento_factura?: Prisma.DateTimeWithAggregatesFilter<"contrato"> | Date | string
-  fecha_generacion_factura?: Prisma.DateTimeWithAggregatesFilter<"contrato"> | Date | string
-  finalizacion_contrato?: Prisma.DateTimeWithAggregatesFilter<"contrato"> | Date | string
-  comercialId?: Prisma.IntWithAggregatesFilter<"contrato"> | number
+  pte?: Prisma.StringNullableWithAggregatesFilter<"contrato"> | string | null
+  tipo_servicio?: Prisma.StringNullableWithAggregatesFilter<"contrato"> | string | null
+  mes_contrato?: Prisma.StringNullableWithAggregatesFilter<"contrato"> | string | null
+  meses_contrato?: Prisma.IntNullableWithAggregatesFilter<"contrato"> | number | null
+  cantidad_horas_contrato?: Prisma.FloatNullableWithAggregatesFilter<"contrato"> | number | null
+  fecha_inicio?: Prisma.DateTimeNullableWithAggregatesFilter<"contrato"> | Date | string | null
+  fecha_vencimiento_factura?: Prisma.DateTimeNullableWithAggregatesFilter<"contrato"> | Date | string | null
+  fecha_generacion_factura?: Prisma.DateTimeNullableWithAggregatesFilter<"contrato"> | Date | string | null
+  finalizacion_contrato?: Prisma.DateTimeNullableWithAggregatesFilter<"contrato"> | Date | string | null
+  valor?: Prisma.BigIntWithAggregatesFilter<"contrato"> | bigint | number
+  tiene_iva?: Prisma.BoolWithAggregatesFilter<"contrato"> | boolean
+  costos?: Prisma.BigIntNullableWithAggregatesFilter<"contrato"> | bigint | number | null
+  auditoria?: Prisma.BigIntNullableWithAggregatesFilter<"contrato"> | bigint | number | null
+  imprevistos?: Prisma.BigIntNullableWithAggregatesFilter<"contrato"> | bigint | number | null
+  rent?: Prisma.BigIntNullableWithAggregatesFilter<"contrato"> | bigint | number | null
+  total_proyecto?: Prisma.BigIntNullableWithAggregatesFilter<"contrato"> | bigint | number | null
+  estado?: Prisma.StringWithAggregatesFilter<"contrato"> | string
+  observaciones?: Prisma.StringNullableWithAggregatesFilter<"contrato"> | string | null
+  esta_facturado?: Prisma.BoolWithAggregatesFilter<"contrato"> | boolean
+  comercialId?: Prisma.IntNullableWithAggregatesFilter<"contrato"> | number | null
 }
 
 export type contratoCreateInput = {
+  nit?: string | null
   clienteId: number
   cliente_nombre_somos: string
   numero_contrato: string
-  mes_contrato: string
-  fecha_vencimiento_factura: Date | string
-  fecha_generacion_factura: Date | string
-  finalizacion_contrato: Date | string
-  comercial: Prisma.comercialCreateNestedOneWithoutContratosInput
+  pte?: string | null
+  tipo_servicio?: string | null
+  mes_contrato?: string | null
+  meses_contrato?: number | null
+  cantidad_horas_contrato?: number | null
+  fecha_inicio?: Date | string | null
+  fecha_vencimiento_factura?: Date | string | null
+  fecha_generacion_factura?: Date | string | null
+  finalizacion_contrato?: Date | string | null
+  valor?: bigint | number
+  tiene_iva?: boolean
+  costos?: bigint | number | null
+  auditoria?: bigint | number | null
+  imprevistos?: bigint | number | null
+  rent?: bigint | number | null
+  total_proyecto?: bigint | number | null
+  estado?: string
+  observaciones?: string | null
+  esta_facturado?: boolean
+  comercial?: Prisma.comercialCreateNestedOneWithoutContratosInput
   facturas?: Prisma.facturaCreateNestedManyWithoutContratoInput
 }
 
 export type contratoUncheckedCreateInput = {
   id_contrato?: number
+  nit?: string | null
   clienteId: number
   cliente_nombre_somos: string
   numero_contrato: string
-  mes_contrato: string
-  fecha_vencimiento_factura: Date | string
-  fecha_generacion_factura: Date | string
-  finalizacion_contrato: Date | string
-  comercialId: number
+  pte?: string | null
+  tipo_servicio?: string | null
+  mes_contrato?: string | null
+  meses_contrato?: number | null
+  cantidad_horas_contrato?: number | null
+  fecha_inicio?: Date | string | null
+  fecha_vencimiento_factura?: Date | string | null
+  fecha_generacion_factura?: Date | string | null
+  finalizacion_contrato?: Date | string | null
+  valor?: bigint | number
+  tiene_iva?: boolean
+  costos?: bigint | number | null
+  auditoria?: bigint | number | null
+  imprevistos?: bigint | number | null
+  rent?: bigint | number | null
+  total_proyecto?: bigint | number | null
+  estado?: string
+  observaciones?: string | null
+  esta_facturado?: boolean
+  comercialId?: number | null
   facturas?: Prisma.facturaUncheckedCreateNestedManyWithoutContratoInput
 }
 
 export type contratoUpdateInput = {
+  nit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clienteId?: Prisma.IntFieldUpdateOperationsInput | number
   cliente_nombre_somos?: Prisma.StringFieldUpdateOperationsInput | string
   numero_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  mes_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  fecha_vencimiento_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fecha_generacion_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizacion_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  comercial?: Prisma.comercialUpdateOneRequiredWithoutContratosNestedInput
+  pte?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipo_servicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mes_contrato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meses_contrato?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cantidad_horas_contrato?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  fecha_inicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_vencimiento_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_generacion_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finalizacion_contrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  valor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  tiene_iva?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  costos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  auditoria?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  imprevistos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  rent?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  total_proyecto?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esta_facturado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  comercial?: Prisma.comercialUpdateOneWithoutContratosNestedInput
   facturas?: Prisma.facturaUpdateManyWithoutContratoNestedInput
 }
 
 export type contratoUncheckedUpdateInput = {
   id_contrato?: Prisma.IntFieldUpdateOperationsInput | number
+  nit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clienteId?: Prisma.IntFieldUpdateOperationsInput | number
   cliente_nombre_somos?: Prisma.StringFieldUpdateOperationsInput | string
   numero_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  mes_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  fecha_vencimiento_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fecha_generacion_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizacion_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  comercialId?: Prisma.IntFieldUpdateOperationsInput | number
+  pte?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipo_servicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mes_contrato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meses_contrato?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cantidad_horas_contrato?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  fecha_inicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_vencimiento_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_generacion_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finalizacion_contrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  valor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  tiene_iva?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  costos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  auditoria?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  imprevistos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  rent?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  total_proyecto?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esta_facturado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  comercialId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   facturas?: Prisma.facturaUncheckedUpdateManyWithoutContratoNestedInput
 }
 
 export type contratoCreateManyInput = {
   id_contrato?: number
+  nit?: string | null
   clienteId: number
   cliente_nombre_somos: string
   numero_contrato: string
-  mes_contrato: string
-  fecha_vencimiento_factura: Date | string
-  fecha_generacion_factura: Date | string
-  finalizacion_contrato: Date | string
-  comercialId: number
+  pte?: string | null
+  tipo_servicio?: string | null
+  mes_contrato?: string | null
+  meses_contrato?: number | null
+  cantidad_horas_contrato?: number | null
+  fecha_inicio?: Date | string | null
+  fecha_vencimiento_factura?: Date | string | null
+  fecha_generacion_factura?: Date | string | null
+  finalizacion_contrato?: Date | string | null
+  valor?: bigint | number
+  tiene_iva?: boolean
+  costos?: bigint | number | null
+  auditoria?: bigint | number | null
+  imprevistos?: bigint | number | null
+  rent?: bigint | number | null
+  total_proyecto?: bigint | number | null
+  estado?: string
+  observaciones?: string | null
+  esta_facturado?: boolean
+  comercialId?: number | null
 }
 
 export type contratoUpdateManyMutationInput = {
+  nit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clienteId?: Prisma.IntFieldUpdateOperationsInput | number
   cliente_nombre_somos?: Prisma.StringFieldUpdateOperationsInput | string
   numero_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  mes_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  fecha_vencimiento_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fecha_generacion_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizacion_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pte?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipo_servicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mes_contrato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meses_contrato?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cantidad_horas_contrato?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  fecha_inicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_vencimiento_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_generacion_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finalizacion_contrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  valor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  tiene_iva?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  costos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  auditoria?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  imprevistos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  rent?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  total_proyecto?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esta_facturado?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type contratoUncheckedUpdateManyInput = {
   id_contrato?: Prisma.IntFieldUpdateOperationsInput | number
+  nit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clienteId?: Prisma.IntFieldUpdateOperationsInput | number
   cliente_nombre_somos?: Prisma.StringFieldUpdateOperationsInput | string
   numero_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  mes_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  fecha_vencimiento_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fecha_generacion_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizacion_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  comercialId?: Prisma.IntFieldUpdateOperationsInput | number
+  pte?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipo_servicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mes_contrato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meses_contrato?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cantidad_horas_contrato?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  fecha_inicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_vencimiento_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_generacion_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finalizacion_contrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  valor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  tiene_iva?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  costos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  auditoria?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  imprevistos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  rent?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  total_proyecto?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esta_facturado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  comercialId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type ContratoListRelationFilter = {
@@ -426,49 +762,113 @@ export type contratoOrderByRelevanceInput = {
 
 export type contratoCountOrderByAggregateInput = {
   id_contrato?: Prisma.SortOrder
+  nit?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
   cliente_nombre_somos?: Prisma.SortOrder
   numero_contrato?: Prisma.SortOrder
+  pte?: Prisma.SortOrder
+  tipo_servicio?: Prisma.SortOrder
   mes_contrato?: Prisma.SortOrder
+  meses_contrato?: Prisma.SortOrder
+  cantidad_horas_contrato?: Prisma.SortOrder
+  fecha_inicio?: Prisma.SortOrder
   fecha_vencimiento_factura?: Prisma.SortOrder
   fecha_generacion_factura?: Prisma.SortOrder
   finalizacion_contrato?: Prisma.SortOrder
+  valor?: Prisma.SortOrder
+  tiene_iva?: Prisma.SortOrder
+  costos?: Prisma.SortOrder
+  auditoria?: Prisma.SortOrder
+  imprevistos?: Prisma.SortOrder
+  rent?: Prisma.SortOrder
+  total_proyecto?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  observaciones?: Prisma.SortOrder
+  esta_facturado?: Prisma.SortOrder
   comercialId?: Prisma.SortOrder
 }
 
 export type contratoAvgOrderByAggregateInput = {
   id_contrato?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
+  meses_contrato?: Prisma.SortOrder
+  cantidad_horas_contrato?: Prisma.SortOrder
+  valor?: Prisma.SortOrder
+  costos?: Prisma.SortOrder
+  auditoria?: Prisma.SortOrder
+  imprevistos?: Prisma.SortOrder
+  rent?: Prisma.SortOrder
+  total_proyecto?: Prisma.SortOrder
   comercialId?: Prisma.SortOrder
 }
 
 export type contratoMaxOrderByAggregateInput = {
   id_contrato?: Prisma.SortOrder
+  nit?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
   cliente_nombre_somos?: Prisma.SortOrder
   numero_contrato?: Prisma.SortOrder
+  pte?: Prisma.SortOrder
+  tipo_servicio?: Prisma.SortOrder
   mes_contrato?: Prisma.SortOrder
+  meses_contrato?: Prisma.SortOrder
+  cantidad_horas_contrato?: Prisma.SortOrder
+  fecha_inicio?: Prisma.SortOrder
   fecha_vencimiento_factura?: Prisma.SortOrder
   fecha_generacion_factura?: Prisma.SortOrder
   finalizacion_contrato?: Prisma.SortOrder
+  valor?: Prisma.SortOrder
+  tiene_iva?: Prisma.SortOrder
+  costos?: Prisma.SortOrder
+  auditoria?: Prisma.SortOrder
+  imprevistos?: Prisma.SortOrder
+  rent?: Prisma.SortOrder
+  total_proyecto?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  observaciones?: Prisma.SortOrder
+  esta_facturado?: Prisma.SortOrder
   comercialId?: Prisma.SortOrder
 }
 
 export type contratoMinOrderByAggregateInput = {
   id_contrato?: Prisma.SortOrder
+  nit?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
   cliente_nombre_somos?: Prisma.SortOrder
   numero_contrato?: Prisma.SortOrder
+  pte?: Prisma.SortOrder
+  tipo_servicio?: Prisma.SortOrder
   mes_contrato?: Prisma.SortOrder
+  meses_contrato?: Prisma.SortOrder
+  cantidad_horas_contrato?: Prisma.SortOrder
+  fecha_inicio?: Prisma.SortOrder
   fecha_vencimiento_factura?: Prisma.SortOrder
   fecha_generacion_factura?: Prisma.SortOrder
   finalizacion_contrato?: Prisma.SortOrder
+  valor?: Prisma.SortOrder
+  tiene_iva?: Prisma.SortOrder
+  costos?: Prisma.SortOrder
+  auditoria?: Prisma.SortOrder
+  imprevistos?: Prisma.SortOrder
+  rent?: Prisma.SortOrder
+  total_proyecto?: Prisma.SortOrder
+  estado?: Prisma.SortOrder
+  observaciones?: Prisma.SortOrder
+  esta_facturado?: Prisma.SortOrder
   comercialId?: Prisma.SortOrder
 }
 
 export type contratoSumOrderByAggregateInput = {
   id_contrato?: Prisma.SortOrder
   clienteId?: Prisma.SortOrder
+  meses_contrato?: Prisma.SortOrder
+  cantidad_horas_contrato?: Prisma.SortOrder
+  valor?: Prisma.SortOrder
+  costos?: Prisma.SortOrder
+  auditoria?: Prisma.SortOrder
+  imprevistos?: Prisma.SortOrder
+  rent?: Prisma.SortOrder
+  total_proyecto?: Prisma.SortOrder
   comercialId?: Prisma.SortOrder
 }
 
@@ -519,8 +919,28 @@ export type contratoUncheckedUpdateManyWithoutComercialNestedInput = {
   deleteMany?: Prisma.contratoScalarWhereInput | Prisma.contratoScalarWhereInput[]
 }
 
-export type DateTimeFieldUpdateOperationsInput = {
-  set?: Date | string
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
+export type NullableDateTimeFieldUpdateOperationsInput = {
+  set?: Date | string | null
+}
+
+export type BigIntFieldUpdateOperationsInput = {
+  set?: bigint | number
+  increment?: bigint | number
+  decrement?: bigint | number
+  multiply?: bigint | number
+  divide?: bigint | number
+}
+
+export type NullableBigIntFieldUpdateOperationsInput = {
+  set?: bigint | number | null
+  increment?: bigint | number
+  decrement?: bigint | number
+  multiply?: bigint | number
+  divide?: bigint | number
 }
 
 export type contratoCreateNestedOneWithoutFacturasInput = {
@@ -540,25 +960,57 @@ export type contratoUpdateOneWithoutFacturasNestedInput = {
 }
 
 export type contratoCreateWithoutComercialInput = {
+  nit?: string | null
   clienteId: number
   cliente_nombre_somos: string
   numero_contrato: string
-  mes_contrato: string
-  fecha_vencimiento_factura: Date | string
-  fecha_generacion_factura: Date | string
-  finalizacion_contrato: Date | string
+  pte?: string | null
+  tipo_servicio?: string | null
+  mes_contrato?: string | null
+  meses_contrato?: number | null
+  cantidad_horas_contrato?: number | null
+  fecha_inicio?: Date | string | null
+  fecha_vencimiento_factura?: Date | string | null
+  fecha_generacion_factura?: Date | string | null
+  finalizacion_contrato?: Date | string | null
+  valor?: bigint | number
+  tiene_iva?: boolean
+  costos?: bigint | number | null
+  auditoria?: bigint | number | null
+  imprevistos?: bigint | number | null
+  rent?: bigint | number | null
+  total_proyecto?: bigint | number | null
+  estado?: string
+  observaciones?: string | null
+  esta_facturado?: boolean
   facturas?: Prisma.facturaCreateNestedManyWithoutContratoInput
 }
 
 export type contratoUncheckedCreateWithoutComercialInput = {
   id_contrato?: number
+  nit?: string | null
   clienteId: number
   cliente_nombre_somos: string
   numero_contrato: string
-  mes_contrato: string
-  fecha_vencimiento_factura: Date | string
-  fecha_generacion_factura: Date | string
-  finalizacion_contrato: Date | string
+  pte?: string | null
+  tipo_servicio?: string | null
+  mes_contrato?: string | null
+  meses_contrato?: number | null
+  cantidad_horas_contrato?: number | null
+  fecha_inicio?: Date | string | null
+  fecha_vencimiento_factura?: Date | string | null
+  fecha_generacion_factura?: Date | string | null
+  finalizacion_contrato?: Date | string | null
+  valor?: bigint | number
+  tiene_iva?: boolean
+  costos?: bigint | number | null
+  auditoria?: bigint | number | null
+  imprevistos?: bigint | number | null
+  rent?: bigint | number | null
+  total_proyecto?: bigint | number | null
+  estado?: string
+  observaciones?: string | null
+  esta_facturado?: boolean
   facturas?: Prisma.facturaUncheckedCreateNestedManyWithoutContratoInput
 }
 
@@ -593,37 +1045,85 @@ export type contratoScalarWhereInput = {
   OR?: Prisma.contratoScalarWhereInput[]
   NOT?: Prisma.contratoScalarWhereInput | Prisma.contratoScalarWhereInput[]
   id_contrato?: Prisma.IntFilter<"contrato"> | number
+  nit?: Prisma.StringNullableFilter<"contrato"> | string | null
   clienteId?: Prisma.IntFilter<"contrato"> | number
   cliente_nombre_somos?: Prisma.StringFilter<"contrato"> | string
   numero_contrato?: Prisma.StringFilter<"contrato"> | string
-  mes_contrato?: Prisma.StringFilter<"contrato"> | string
-  fecha_vencimiento_factura?: Prisma.DateTimeFilter<"contrato"> | Date | string
-  fecha_generacion_factura?: Prisma.DateTimeFilter<"contrato"> | Date | string
-  finalizacion_contrato?: Prisma.DateTimeFilter<"contrato"> | Date | string
-  comercialId?: Prisma.IntFilter<"contrato"> | number
+  pte?: Prisma.StringNullableFilter<"contrato"> | string | null
+  tipo_servicio?: Prisma.StringNullableFilter<"contrato"> | string | null
+  mes_contrato?: Prisma.StringNullableFilter<"contrato"> | string | null
+  meses_contrato?: Prisma.IntNullableFilter<"contrato"> | number | null
+  cantidad_horas_contrato?: Prisma.FloatNullableFilter<"contrato"> | number | null
+  fecha_inicio?: Prisma.DateTimeNullableFilter<"contrato"> | Date | string | null
+  fecha_vencimiento_factura?: Prisma.DateTimeNullableFilter<"contrato"> | Date | string | null
+  fecha_generacion_factura?: Prisma.DateTimeNullableFilter<"contrato"> | Date | string | null
+  finalizacion_contrato?: Prisma.DateTimeNullableFilter<"contrato"> | Date | string | null
+  valor?: Prisma.BigIntFilter<"contrato"> | bigint | number
+  tiene_iva?: Prisma.BoolFilter<"contrato"> | boolean
+  costos?: Prisma.BigIntNullableFilter<"contrato"> | bigint | number | null
+  auditoria?: Prisma.BigIntNullableFilter<"contrato"> | bigint | number | null
+  imprevistos?: Prisma.BigIntNullableFilter<"contrato"> | bigint | number | null
+  rent?: Prisma.BigIntNullableFilter<"contrato"> | bigint | number | null
+  total_proyecto?: Prisma.BigIntNullableFilter<"contrato"> | bigint | number | null
+  estado?: Prisma.StringFilter<"contrato"> | string
+  observaciones?: Prisma.StringNullableFilter<"contrato"> | string | null
+  esta_facturado?: Prisma.BoolFilter<"contrato"> | boolean
+  comercialId?: Prisma.IntNullableFilter<"contrato"> | number | null
 }
 
 export type contratoCreateWithoutFacturasInput = {
+  nit?: string | null
   clienteId: number
   cliente_nombre_somos: string
   numero_contrato: string
-  mes_contrato: string
-  fecha_vencimiento_factura: Date | string
-  fecha_generacion_factura: Date | string
-  finalizacion_contrato: Date | string
-  comercial: Prisma.comercialCreateNestedOneWithoutContratosInput
+  pte?: string | null
+  tipo_servicio?: string | null
+  mes_contrato?: string | null
+  meses_contrato?: number | null
+  cantidad_horas_contrato?: number | null
+  fecha_inicio?: Date | string | null
+  fecha_vencimiento_factura?: Date | string | null
+  fecha_generacion_factura?: Date | string | null
+  finalizacion_contrato?: Date | string | null
+  valor?: bigint | number
+  tiene_iva?: boolean
+  costos?: bigint | number | null
+  auditoria?: bigint | number | null
+  imprevistos?: bigint | number | null
+  rent?: bigint | number | null
+  total_proyecto?: bigint | number | null
+  estado?: string
+  observaciones?: string | null
+  esta_facturado?: boolean
+  comercial?: Prisma.comercialCreateNestedOneWithoutContratosInput
 }
 
 export type contratoUncheckedCreateWithoutFacturasInput = {
   id_contrato?: number
+  nit?: string | null
   clienteId: number
   cliente_nombre_somos: string
   numero_contrato: string
-  mes_contrato: string
-  fecha_vencimiento_factura: Date | string
-  fecha_generacion_factura: Date | string
-  finalizacion_contrato: Date | string
-  comercialId: number
+  pte?: string | null
+  tipo_servicio?: string | null
+  mes_contrato?: string | null
+  meses_contrato?: number | null
+  cantidad_horas_contrato?: number | null
+  fecha_inicio?: Date | string | null
+  fecha_vencimiento_factura?: Date | string | null
+  fecha_generacion_factura?: Date | string | null
+  finalizacion_contrato?: Date | string | null
+  valor?: bigint | number
+  tiene_iva?: boolean
+  costos?: bigint | number | null
+  auditoria?: bigint | number | null
+  imprevistos?: bigint | number | null
+  rent?: bigint | number | null
+  total_proyecto?: bigint | number | null
+  estado?: string
+  observaciones?: string | null
+  esta_facturado?: boolean
+  comercialId?: number | null
 }
 
 export type contratoCreateOrConnectWithoutFacturasInput = {
@@ -643,71 +1143,167 @@ export type contratoUpdateToOneWithWhereWithoutFacturasInput = {
 }
 
 export type contratoUpdateWithoutFacturasInput = {
+  nit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clienteId?: Prisma.IntFieldUpdateOperationsInput | number
   cliente_nombre_somos?: Prisma.StringFieldUpdateOperationsInput | string
   numero_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  mes_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  fecha_vencimiento_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fecha_generacion_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizacion_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  comercial?: Prisma.comercialUpdateOneRequiredWithoutContratosNestedInput
+  pte?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipo_servicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mes_contrato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meses_contrato?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cantidad_horas_contrato?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  fecha_inicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_vencimiento_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_generacion_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finalizacion_contrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  valor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  tiene_iva?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  costos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  auditoria?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  imprevistos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  rent?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  total_proyecto?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esta_facturado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  comercial?: Prisma.comercialUpdateOneWithoutContratosNestedInput
 }
 
 export type contratoUncheckedUpdateWithoutFacturasInput = {
   id_contrato?: Prisma.IntFieldUpdateOperationsInput | number
+  nit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clienteId?: Prisma.IntFieldUpdateOperationsInput | number
   cliente_nombre_somos?: Prisma.StringFieldUpdateOperationsInput | string
   numero_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  mes_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  fecha_vencimiento_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fecha_generacion_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizacion_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  comercialId?: Prisma.IntFieldUpdateOperationsInput | number
+  pte?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipo_servicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mes_contrato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meses_contrato?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cantidad_horas_contrato?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  fecha_inicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_vencimiento_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_generacion_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finalizacion_contrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  valor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  tiene_iva?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  costos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  auditoria?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  imprevistos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  rent?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  total_proyecto?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esta_facturado?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  comercialId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
 }
 
 export type contratoCreateManyComercialInput = {
   id_contrato?: number
+  nit?: string | null
   clienteId: number
   cliente_nombre_somos: string
   numero_contrato: string
-  mes_contrato: string
-  fecha_vencimiento_factura: Date | string
-  fecha_generacion_factura: Date | string
-  finalizacion_contrato: Date | string
+  pte?: string | null
+  tipo_servicio?: string | null
+  mes_contrato?: string | null
+  meses_contrato?: number | null
+  cantidad_horas_contrato?: number | null
+  fecha_inicio?: Date | string | null
+  fecha_vencimiento_factura?: Date | string | null
+  fecha_generacion_factura?: Date | string | null
+  finalizacion_contrato?: Date | string | null
+  valor?: bigint | number
+  tiene_iva?: boolean
+  costos?: bigint | number | null
+  auditoria?: bigint | number | null
+  imprevistos?: bigint | number | null
+  rent?: bigint | number | null
+  total_proyecto?: bigint | number | null
+  estado?: string
+  observaciones?: string | null
+  esta_facturado?: boolean
 }
 
 export type contratoUpdateWithoutComercialInput = {
+  nit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clienteId?: Prisma.IntFieldUpdateOperationsInput | number
   cliente_nombre_somos?: Prisma.StringFieldUpdateOperationsInput | string
   numero_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  mes_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  fecha_vencimiento_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fecha_generacion_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizacion_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pte?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipo_servicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mes_contrato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meses_contrato?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cantidad_horas_contrato?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  fecha_inicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_vencimiento_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_generacion_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finalizacion_contrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  valor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  tiene_iva?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  costos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  auditoria?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  imprevistos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  rent?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  total_proyecto?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esta_facturado?: Prisma.BoolFieldUpdateOperationsInput | boolean
   facturas?: Prisma.facturaUpdateManyWithoutContratoNestedInput
 }
 
 export type contratoUncheckedUpdateWithoutComercialInput = {
   id_contrato?: Prisma.IntFieldUpdateOperationsInput | number
+  nit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clienteId?: Prisma.IntFieldUpdateOperationsInput | number
   cliente_nombre_somos?: Prisma.StringFieldUpdateOperationsInput | string
   numero_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  mes_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  fecha_vencimiento_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fecha_generacion_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizacion_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pte?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipo_servicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mes_contrato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meses_contrato?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cantidad_horas_contrato?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  fecha_inicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_vencimiento_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_generacion_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finalizacion_contrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  valor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  tiene_iva?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  costos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  auditoria?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  imprevistos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  rent?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  total_proyecto?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esta_facturado?: Prisma.BoolFieldUpdateOperationsInput | boolean
   facturas?: Prisma.facturaUncheckedUpdateManyWithoutContratoNestedInput
 }
 
 export type contratoUncheckedUpdateManyWithoutComercialInput = {
   id_contrato?: Prisma.IntFieldUpdateOperationsInput | number
+  nit?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   clienteId?: Prisma.IntFieldUpdateOperationsInput | number
   cliente_nombre_somos?: Prisma.StringFieldUpdateOperationsInput | string
   numero_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  mes_contrato?: Prisma.StringFieldUpdateOperationsInput | string
-  fecha_vencimiento_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  fecha_generacion_factura?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  finalizacion_contrato?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  pte?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  tipo_servicio?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  mes_contrato?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  meses_contrato?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  cantidad_horas_contrato?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  fecha_inicio?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_vencimiento_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  fecha_generacion_factura?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  finalizacion_contrato?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  valor?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  tiene_iva?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  costos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  auditoria?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  imprevistos?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  rent?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  total_proyecto?: Prisma.NullableBigIntFieldUpdateOperationsInput | bigint | number | null
+  estado?: Prisma.StringFieldUpdateOperationsInput | string
+  observaciones?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  esta_facturado?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -743,15 +1339,31 @@ export type ContratoCountOutputTypeCountFacturasArgs<ExtArgs extends runtime.Typ
 
 export type contratoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id_contrato?: boolean
+  nit?: boolean
   clienteId?: boolean
   cliente_nombre_somos?: boolean
   numero_contrato?: boolean
+  pte?: boolean
+  tipo_servicio?: boolean
   mes_contrato?: boolean
+  meses_contrato?: boolean
+  cantidad_horas_contrato?: boolean
+  fecha_inicio?: boolean
   fecha_vencimiento_factura?: boolean
   fecha_generacion_factura?: boolean
   finalizacion_contrato?: boolean
+  valor?: boolean
+  tiene_iva?: boolean
+  costos?: boolean
+  auditoria?: boolean
+  imprevistos?: boolean
+  rent?: boolean
+  total_proyecto?: boolean
+  estado?: boolean
+  observaciones?: boolean
+  esta_facturado?: boolean
   comercialId?: boolean
-  comercial?: boolean | Prisma.comercialDefaultArgs<ExtArgs>
+  comercial?: boolean | Prisma.contrato$comercialArgs<ExtArgs>
   facturas?: boolean | Prisma.contrato$facturasArgs<ExtArgs>
   _count?: boolean | Prisma.ContratoCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["contrato"]>
@@ -760,19 +1372,35 @@ export type contratoSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
 
 export type contratoSelectScalar = {
   id_contrato?: boolean
+  nit?: boolean
   clienteId?: boolean
   cliente_nombre_somos?: boolean
   numero_contrato?: boolean
+  pte?: boolean
+  tipo_servicio?: boolean
   mes_contrato?: boolean
+  meses_contrato?: boolean
+  cantidad_horas_contrato?: boolean
+  fecha_inicio?: boolean
   fecha_vencimiento_factura?: boolean
   fecha_generacion_factura?: boolean
   finalizacion_contrato?: boolean
+  valor?: boolean
+  tiene_iva?: boolean
+  costos?: boolean
+  auditoria?: boolean
+  imprevistos?: boolean
+  rent?: boolean
+  total_proyecto?: boolean
+  estado?: boolean
+  observaciones?: boolean
+  esta_facturado?: boolean
   comercialId?: boolean
 }
 
-export type contratoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_contrato" | "clienteId" | "cliente_nombre_somos" | "numero_contrato" | "mes_contrato" | "fecha_vencimiento_factura" | "fecha_generacion_factura" | "finalizacion_contrato" | "comercialId", ExtArgs["result"]["contrato"]>
+export type contratoOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id_contrato" | "nit" | "clienteId" | "cliente_nombre_somos" | "numero_contrato" | "pte" | "tipo_servicio" | "mes_contrato" | "meses_contrato" | "cantidad_horas_contrato" | "fecha_inicio" | "fecha_vencimiento_factura" | "fecha_generacion_factura" | "finalizacion_contrato" | "valor" | "tiene_iva" | "costos" | "auditoria" | "imprevistos" | "rent" | "total_proyecto" | "estado" | "observaciones" | "esta_facturado" | "comercialId", ExtArgs["result"]["contrato"]>
 export type contratoInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  comercial?: boolean | Prisma.comercialDefaultArgs<ExtArgs>
+  comercial?: boolean | Prisma.contrato$comercialArgs<ExtArgs>
   facturas?: boolean | Prisma.contrato$facturasArgs<ExtArgs>
   _count?: boolean | Prisma.ContratoCountOutputTypeDefaultArgs<ExtArgs>
 }
@@ -780,19 +1408,35 @@ export type contratoInclude<ExtArgs extends runtime.Types.Extensions.InternalArg
 export type $contratoPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "contrato"
   objects: {
-    comercial: Prisma.$comercialPayload<ExtArgs>
+    comercial: Prisma.$comercialPayload<ExtArgs> | null
     facturas: Prisma.$facturaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id_contrato: number
+    nit: string | null
     clienteId: number
     cliente_nombre_somos: string
     numero_contrato: string
-    mes_contrato: string
-    fecha_vencimiento_factura: Date
-    fecha_generacion_factura: Date
-    finalizacion_contrato: Date
-    comercialId: number
+    pte: string | null
+    tipo_servicio: string | null
+    mes_contrato: string | null
+    meses_contrato: number | null
+    cantidad_horas_contrato: number | null
+    fecha_inicio: Date | null
+    fecha_vencimiento_factura: Date | null
+    fecha_generacion_factura: Date | null
+    finalizacion_contrato: Date | null
+    valor: bigint
+    tiene_iva: boolean
+    costos: bigint | null
+    auditoria: bigint | null
+    imprevistos: bigint | null
+    rent: bigint | null
+    total_proyecto: bigint | null
+    estado: string
+    observaciones: string | null
+    esta_facturado: boolean
+    comercialId: number | null
   }, ExtArgs["result"]["contrato"]>
   composites: {}
 }
@@ -1133,7 +1777,7 @@ readonly fields: contratoFieldRefs;
  */
 export interface Prisma__contratoClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  comercial<T extends Prisma.comercialDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.comercialDefaultArgs<ExtArgs>>): Prisma.Prisma__comercialClient<runtime.Types.Result.GetResult<Prisma.$comercialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  comercial<T extends Prisma.contrato$comercialArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.contrato$comercialArgs<ExtArgs>>): Prisma.Prisma__comercialClient<runtime.Types.Result.GetResult<Prisma.$comercialPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   facturas<T extends Prisma.contrato$facturasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.contrato$facturasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$facturaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -1165,13 +1809,29 @@ export interface Prisma__contratoClient<T, Null = never, ExtArgs extends runtime
  */
 export interface contratoFieldRefs {
   readonly id_contrato: Prisma.FieldRef<"contrato", 'Int'>
+  readonly nit: Prisma.FieldRef<"contrato", 'String'>
   readonly clienteId: Prisma.FieldRef<"contrato", 'Int'>
   readonly cliente_nombre_somos: Prisma.FieldRef<"contrato", 'String'>
   readonly numero_contrato: Prisma.FieldRef<"contrato", 'String'>
+  readonly pte: Prisma.FieldRef<"contrato", 'String'>
+  readonly tipo_servicio: Prisma.FieldRef<"contrato", 'String'>
   readonly mes_contrato: Prisma.FieldRef<"contrato", 'String'>
+  readonly meses_contrato: Prisma.FieldRef<"contrato", 'Int'>
+  readonly cantidad_horas_contrato: Prisma.FieldRef<"contrato", 'Float'>
+  readonly fecha_inicio: Prisma.FieldRef<"contrato", 'DateTime'>
   readonly fecha_vencimiento_factura: Prisma.FieldRef<"contrato", 'DateTime'>
   readonly fecha_generacion_factura: Prisma.FieldRef<"contrato", 'DateTime'>
   readonly finalizacion_contrato: Prisma.FieldRef<"contrato", 'DateTime'>
+  readonly valor: Prisma.FieldRef<"contrato", 'BigInt'>
+  readonly tiene_iva: Prisma.FieldRef<"contrato", 'Boolean'>
+  readonly costos: Prisma.FieldRef<"contrato", 'BigInt'>
+  readonly auditoria: Prisma.FieldRef<"contrato", 'BigInt'>
+  readonly imprevistos: Prisma.FieldRef<"contrato", 'BigInt'>
+  readonly rent: Prisma.FieldRef<"contrato", 'BigInt'>
+  readonly total_proyecto: Prisma.FieldRef<"contrato", 'BigInt'>
+  readonly estado: Prisma.FieldRef<"contrato", 'String'>
+  readonly observaciones: Prisma.FieldRef<"contrato", 'String'>
+  readonly esta_facturado: Prisma.FieldRef<"contrato", 'Boolean'>
   readonly comercialId: Prisma.FieldRef<"contrato", 'Int'>
 }
     
@@ -1518,6 +2178,25 @@ export type contratoDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inte
    * Limit how many contratoes to delete.
    */
   limit?: number
+}
+
+/**
+ * contrato.comercial
+ */
+export type contrato$comercialArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the comercial
+   */
+  select?: Prisma.comercialSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the comercial
+   */
+  omit?: Prisma.comercialOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.comercialInclude<ExtArgs> | null
+  where?: Prisma.comercialWhereInput
 }
 
 /**

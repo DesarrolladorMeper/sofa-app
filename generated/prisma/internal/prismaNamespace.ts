@@ -1177,13 +1177,29 @@ export type ComercialScalarFieldEnum = (typeof ComercialScalarFieldEnum)[keyof t
 
 export const ContratoScalarFieldEnum = {
   id_contrato: 'id_contrato',
+  nit: 'nit',
   clienteId: 'clienteId',
   cliente_nombre_somos: 'cliente_nombre_somos',
   numero_contrato: 'numero_contrato',
+  pte: 'pte',
+  tipo_servicio: 'tipo_servicio',
   mes_contrato: 'mes_contrato',
+  meses_contrato: 'meses_contrato',
+  cantidad_horas_contrato: 'cantidad_horas_contrato',
+  fecha_inicio: 'fecha_inicio',
   fecha_vencimiento_factura: 'fecha_vencimiento_factura',
   fecha_generacion_factura: 'fecha_generacion_factura',
   finalizacion_contrato: 'finalizacion_contrato',
+  valor: 'valor',
+  tiene_iva: 'tiene_iva',
+  costos: 'costos',
+  auditoria: 'auditoria',
+  imprevistos: 'imprevistos',
+  rent: 'rent',
+  total_proyecto: 'total_proyecto',
+  estado: 'estado',
+  observaciones: 'observaciones',
+  esta_facturado: 'esta_facturado',
   comercialId: 'comercialId'
 } as const
 
@@ -1290,9 +1306,14 @@ export type comercialOrderByRelevanceFieldEnum = (typeof comercialOrderByRelevan
 
 
 export const contratoOrderByRelevanceFieldEnum = {
+  nit: 'nit',
   cliente_nombre_somos: 'cliente_nombre_somos',
   numero_contrato: 'numero_contrato',
-  mes_contrato: 'mes_contrato'
+  pte: 'pte',
+  tipo_servicio: 'tipo_servicio',
+  mes_contrato: 'mes_contrato',
+  estado: 'estado',
+  observaciones: 'observaciones'
 } as const
 
 export type contratoOrderByRelevanceFieldEnum = (typeof contratoOrderByRelevanceFieldEnum)[keyof typeof contratoOrderByRelevanceFieldEnum]

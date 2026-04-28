@@ -351,11 +351,6 @@ export type comercialSumOrderByAggregateInput = {
   porcentaje_comision?: Prisma.SortOrder
 }
 
-export type ComercialScalarRelationFilter = {
-  is?: Prisma.comercialWhereInput
-  isNot?: Prisma.comercialWhereInput
-}
-
 export type ComercialNullableScalarRelationFilter = {
   is?: Prisma.comercialWhereInput | null
   isNot?: Prisma.comercialWhereInput | null
@@ -375,10 +370,12 @@ export type comercialCreateNestedOneWithoutContratosInput = {
   connect?: Prisma.comercialWhereUniqueInput
 }
 
-export type comercialUpdateOneRequiredWithoutContratosNestedInput = {
+export type comercialUpdateOneWithoutContratosNestedInput = {
   create?: Prisma.XOR<Prisma.comercialCreateWithoutContratosInput, Prisma.comercialUncheckedCreateWithoutContratosInput>
   connectOrCreate?: Prisma.comercialCreateOrConnectWithoutContratosInput
   upsert?: Prisma.comercialUpsertWithoutContratosInput
+  disconnect?: Prisma.comercialWhereInput | boolean
+  delete?: Prisma.comercialWhereInput | boolean
   connect?: Prisma.comercialWhereUniqueInput
   update?: Prisma.XOR<Prisma.XOR<Prisma.comercialUpdateToOneWithWhereWithoutContratosInput, Prisma.comercialUpdateWithoutContratosInput>, Prisma.comercialUncheckedUpdateWithoutContratosInput>
 }

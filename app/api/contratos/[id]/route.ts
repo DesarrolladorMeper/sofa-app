@@ -35,6 +35,7 @@ export async function PUT(
         cliente_nombre_somos: body.cliente_nombre_somos,
         numero_contrato: body.numero_contrato,
         pte: body.pte || null,
+        tipo_servicio: body.tipo_servicio || null,
         meses_contrato: body.meses_contrato ? Number(body.meses_contrato) : null,
         cantidad_horas_contrato: body.cantidad_horas_contrato ? Number(body.cantidad_horas_contrato) : null,
         fecha_inicio: body.fecha_inicio ? new Date(body.fecha_inicio) : null,

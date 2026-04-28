@@ -12,7 +12,7 @@ const fecha = (s: string | null) =>
 
 const BADGE: Record<string, string> = {
   ACTIVO:    "bg-green-100 text-green-700",
-  PENDIENTE: "bg-yellow-100 text-yellow-700",
+  SUSPENDIDO: "bg-yellow-100 text-yellow-700",
   VENCIDO:   "bg-red-100 text-red-700",
   CANCELADO: "bg-gray-100 text-gray-500",
 };
@@ -78,15 +78,13 @@ export default function ContratosTable({ contratos, selectedRows, onSelectRow, o
             <th className="py-3 px-3 text-left font-semibold text-gray-600">Cliente</th>
             <th className="py-3 px-3 text-left font-semibold text-gray-600 whitespace-nowrap">No. Contrato</th>
             <th className="py-3 px-3 text-left font-semibold text-gray-600">PTE</th>
+            <th className="py-3 px-3 text-left font-semibold text-gray-600 whitespace-nowrap">Tipo Servicio</th>
             <th className="py-3 px-3 text-center font-semibold text-gray-600 whitespace-nowrap">Meses</th>
             <th className="py-3 px-3 text-center font-semibold text-gray-600 whitespace-nowrap">Horas</th>
             <th className="py-3 px-3 text-left font-semibold text-gray-600 whitespace-nowrap">Inicio</th>
             <th className="py-3 px-3 text-left font-semibold text-gray-600 whitespace-nowrap">Venci.</th>
-            <th className="py-3 px-3 text-right font-semibold text-gray-600">Costos</th>
-            <th className="py-3 px-3 text-right font-semibold text-gray-600">Auditoría</th>
-            <th className="py-3 px-3 text-right font-semibold text-gray-600">Imprevistos</th>
-            <th className="py-3 px-3 text-right font-semibold text-gray-600">$ Rent</th>
             <th className="py-3 px-3 text-right font-semibold text-gray-600 whitespace-nowrap">Total Contrato</th>
+            <th className="py-3 px-3 text-right font-semibold text-gray-600 whitespace-nowrap">Factura Mensual</th>
             <th className="py-3 px-3 text-left font-semibold text-gray-600">Estado</th>
             <th className="py-3 px-3 text-left font-semibold text-gray-600 whitespace-nowrap">% Facturado</th>
             <th className="py-3 px-3 text-left font-semibold text-gray-600">Comercial</th>
@@ -106,16 +104,18 @@ export default function ContratosTable({ contratos, selectedRows, onSelectRow, o
               <td className="py-2.5 px-3 font-mono font-semibold text-[#514737] whitespace-nowrap text-xs">
                 {c.numero_contrato}
               </td>
-              <td className="py-2.5 px-3 text-gray-400 text-xs">{c.pte ?? "—"}</td>
+              <td className="py-2.5 px-3 text-gray-400 text-xs font-mono">{c.pte ?? "—"}</td>
+              <td className="py-2.5 px-3 text-gray-600 text-xs whitespace-nowrap">{c.tipo_servicio ?? "—"}</td>
               <td className="py-2.5 px-3 text-center text-gray-600">{c.meses_contrato ?? "—"}</td>
               <td className="py-2.5 px-3 text-center text-gray-600">{c.cantidad_horas_contrato ?? "—"}</td>
               <td className="py-2.5 px-3 text-gray-600 whitespace-nowrap text-xs">{fecha(c.fecha_inicio)}</td>
               <td className="py-2.5 px-3 text-gray-600 whitespace-nowrap text-xs">{fecha(c.finalizacion_contrato)}</td>
-              <td className="py-2.5 px-3 text-right text-gray-600 whitespace-nowrap text-xs">{COP(c.costos)}</td>
-              <td className="py-2.5 px-3 text-right text-gray-600 whitespace-nowrap text-xs">{COP(c.auditoria)}</td>
-              <td className="py-2.5 px-3 text-right text-gray-600 whitespace-nowrap text-xs">{COP(c.imprevistos)}</td>
-              <td className="py-2.5 px-3 text-right text-gray-600 whitespace-nowrap text-xs">{COP(c.rent)}</td>
               <td className="py-2.5 px-3 text-right font-semibold text-gray-800 whitespace-nowrap text-xs">{COP(c.total_proyecto)}</td>
+              <td className="py-2.5 px-3 text-right text-gray-600 whitespace-nowrap text-xs">
+                {c.total_proyecto != null && c.meses_contrato
+                  ? COP(Math.round(Number(c.total_proyecto) / c.meses_contrato))
+                  : "—"}
+              </td>
               <td className="py-2.5 px-3">
                 <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${BADGE[c.estado] ?? "bg-gray-100 text-gray-500"}`}>
                   {c.estado}
