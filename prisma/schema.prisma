@@ -69,15 +69,25 @@ model comercial {
 
 model contrato {
   id_contrato               Int        @id @default(autoincrement())
+  nit                       String?
   clienteId                 Int
   cliente_nombre_somos      String
   numero_contrato           String     @unique
-  mes_contrato              String
-  fecha_vencimiento_factura DateTime   @db.Date
-  fecha_generacion_factura  DateTime   @db.Date
-  finalizacion_contrato     DateTime   @db.Date
-  valor                     BigInt
+  pte                       String?
+  mes_contrato              String?
+  meses_contrato            Int?
+  cantidad_horas_contrato   Float?
+  fecha_inicio              DateTime?  @db.Date
+  fecha_vencimiento_factura DateTime?  @db.Date
+  fecha_generacion_factura  DateTime?  @db.Date
+  finalizacion_contrato     DateTime?  @db.Date
+  valor                     BigInt     @default(0)
   tiene_iva                 Boolean    @default(false)
+  costos                    BigInt?
+  auditoria                 BigInt?
+  imprevistos               BigInt?
+  rent                      BigInt?
+  total_proyecto            BigInt?
   estado                    String     @default("ACTIVO")
   observaciones             String?    @db.Text
   esta_facturado            Boolean    @default(false)

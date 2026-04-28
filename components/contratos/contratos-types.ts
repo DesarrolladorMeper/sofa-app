@@ -7,15 +7,25 @@ export type Comercial = {
 
 export type Contrato = {
   id_contrato: number;
+  nit: string | null;
   clienteId: number;
   cliente_nombre_somos: string;
   numero_contrato: string;
-  mes_contrato: string;
-  fecha_generacion_factura: string;
-  fecha_vencimiento_factura: string;
-  finalizacion_contrato: string;
+  pte: string | null;
+  mes_contrato: string | null;
+  meses_contrato: number | null;
+  cantidad_horas_contrato: number | null;
+  fecha_inicio: string | null;
+  fecha_generacion_factura: string | null;
+  fecha_vencimiento_factura: string | null;
+  finalizacion_contrato: string | null;
   valor: number | string;
   tiene_iva: boolean;
+  costos: number | string | null;
+  auditoria: number | string | null;
+  imprevistos: number | string | null;
+  rent: number | string | null;
+  total_proyecto: number | string | null;
   estado: string;
   observaciones: string | null;
   esta_facturado: boolean;
