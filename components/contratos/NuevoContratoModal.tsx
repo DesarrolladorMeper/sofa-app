@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { toast } from "sonner";
-import { Contrato, Comercial, ESTADOS_CONTRATO } from "./contratos-types";
+import { Contrato, Comercial, ClienteSugerencia, ESTADOS_CONTRATO } from "./contratos-types";
 
 type Props = {
   onClose: () => void;
@@ -17,14 +17,10 @@ const VACÍO = {
   cliente_nombre_somos: "",
   numero_contrato: "",
   pte: "",
-  mes_contrato: "",
   meses_contrato: "",
   cantidad_horas_contrato: "",
   fecha_inicio: "",
-  fecha_vencimiento_factura: "",
-  fecha_generacion_factura: "",
   finalizacion_contrato: "",
-  valor: "",
   tiene_iva: false,
   costos: "",
   auditoria: "",
@@ -33,7 +29,6 @@ const VACÍO = {
   total_proyecto: "",
   estado: "ACTIVO",
   observaciones: "",
-  esta_facturado: false,
   comercialId: "",
 };
 
@@ -43,22 +38,68 @@ export default function NuevoContratoModal({ onClose, onGuardado, contratoEditar
   const [form, setForm] = useState(VACÍO);
   const [guardando, setGuardando] = useState(false);
 
+  // Búsqueda de cliente
+  const [clienteQuery, setClienteQuery] = useState("");
+  const [sugerencias, setSugerencias] = useState<ClienteSugerencia[]>([]);
+  const [todasSugerencias, setTodasSugerencias] = useState<ClienteSugerencia[]>([]);
+  const [mostrarDropdown, setMostrarDropdown] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Cargar clientes existentes al abrir el modal
+  useEffect(() => {
+    fetch("/api/contratos/clientes")
+      .then((r) => r.json())
+      .then((data: ClienteSugerencia[]) => setTodasSugerencias(data))
+      .catch(() => {});
+  }, []);
+
+  // Filtrar sugerencias al escribir
+  useEffect(() => {
+    const q = clienteQuery.toLowerCase().trim();
+    if (!q) { setSugerencias([]); return; }
+    const filtradas = todasSugerencias.filter(
+      (c) => c.nombre.toLowerCase().includes(q) || c.nit.includes(q)
+    );
+    setSugerencias(filtradas.slice(0, 8));
+  }, [clienteQuery, todasSugerencias]);
+
+  // Cerrar dropdown al hacer clic fuera
+  useEffect(() => {
+    const handler = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setMostrarDropdown(false);
+      }
+    };
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  }, []);
+
+  const seleccionarCliente = (c: ClienteSugerencia) => {
+    setClienteQuery(c.nombre);
+    setForm((prev) => ({ ...prev, nit: c.nit, cliente_nombre_somos: c.nombre }));
+    setMostrarDropdown(false);
+  };
+
+  // Cuando el input de búsqueda cambia manualmente, actualiza también el campo nombre
+  const onClienteQueryChange = (valor: string) => {
+    setClienteQuery(valor);
+    setForm((prev) => ({ ...prev, cliente_nombre_somos: valor }));
+    setMostrarDropdown(true);
+  };
+
   useEffect(() => {
     if (contratoEditar) {
+      setClienteQuery(contratoEditar.cliente_nombre_somos);
       setForm({
         nit: contratoEditar.nit ?? "",
         clienteId: String(contratoEditar.clienteId),
         cliente_nombre_somos: contratoEditar.cliente_nombre_somos,
         numero_contrato: contratoEditar.numero_contrato,
         pte: contratoEditar.pte ?? "",
-        mes_contrato: contratoEditar.mes_contrato ?? "",
         meses_contrato: contratoEditar.meses_contrato != null ? String(contratoEditar.meses_contrato) : "",
         cantidad_horas_contrato: contratoEditar.cantidad_horas_contrato != null ? String(contratoEditar.cantidad_horas_contrato) : "",
         fecha_inicio: toISO(contratoEditar.fecha_inicio),
-        fecha_vencimiento_factura: toISO(contratoEditar.fecha_vencimiento_factura),
-        fecha_generacion_factura: toISO(contratoEditar.fecha_generacion_factura),
         finalizacion_contrato: toISO(contratoEditar.finalizacion_contrato),
-        valor: String(contratoEditar.valor),
         tiene_iva: contratoEditar.tiene_iva,
         costos: contratoEditar.costos != null ? String(contratoEditar.costos) : "",
         auditoria: contratoEditar.auditoria != null ? String(contratoEditar.auditoria) : "",
@@ -67,26 +108,27 @@ export default function NuevoContratoModal({ onClose, onGuardado, contratoEditar
         total_proyecto: contratoEditar.total_proyecto != null ? String(contratoEditar.total_proyecto) : "",
         estado: contratoEditar.estado,
         observaciones: contratoEditar.observaciones ?? "",
-        esta_facturado: contratoEditar.esta_facturado,
         comercialId: contratoEditar.comercialId ? String(contratoEditar.comercialId) : "",
       });
     } else {
       setForm(VACÍO);
+      setClienteQuery("");
     }
   }, [contratoEditar]);
 
   const set = (k: keyof typeof VACÍO, v: string | boolean) =>
     setForm((prev) => ({ ...prev, [k]: v }));
 
-  // Recalcula total_proyecto automáticamente al cambiar los componentes de costo
   const recalcularTotal = (campo: string, valor: string) => {
-    const next = { ...form, [campo]: valor };
-    const costos = Number(next.costos) || 0;
-    const auditoria = Number(next.auditoria) || 0;
-    const imprevistos = Number(next.imprevistos) || 0;
-    const rent = Number(next.rent) || 0;
-    const total = costos + auditoria + imprevistos + rent;
-    setForm((prev) => ({ ...prev, [campo]: valor, total_proyecto: total > 0 ? String(total) : prev.total_proyecto }));
+    setForm((prev) => {
+      const next = { ...prev, [campo]: valor };
+      const total =
+        (Number(next.costos) || 0) +
+        (Number(next.auditoria) || 0) +
+        (Number(next.imprevistos) || 0) +
+        (Number(next.rent) || 0);
+      return { ...next, total_proyecto: total > 0 ? String(total) : next.total_proyecto };
+    });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -98,16 +140,14 @@ export default function NuevoContratoModal({ onClose, onGuardado, contratoEditar
     setGuardando(true);
     try {
       const url = contratoEditar ? `/api/contratos/${contratoEditar.id_contrato}` : "/api/contratos";
-      const method = contratoEditar ? "PUT" : "POST";
       const res = await fetch(url, {
-        method,
+        method: contratoEditar ? "PUT" : "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...form,
           clienteId: Number(form.clienteId) || 0,
           meses_contrato: form.meses_contrato ? Number(form.meses_contrato) : null,
           cantidad_horas_contrato: form.cantidad_horas_contrato ? Number(form.cantidad_horas_contrato) : null,
-          valor: Number(form.valor) || 0,
           costos: form.costos ? Number(form.costos) : null,
           auditoria: form.auditoria ? Number(form.auditoria) : null,
           imprevistos: form.imprevistos ? Number(form.imprevistos) : null,
@@ -148,17 +188,46 @@ export default function NuevoContratoModal({ onClose, onGuardado, contratoEditar
 
         <form onSubmit={handleSubmit} className="flex-1 overflow-y-auto px-6 py-5 space-y-6">
 
-          {/* ── Sección 1: Identificación del cliente ── */}
+          {/* ── Sección 1: Cliente ── */}
           <div>
             <p className={sec}>Datos del cliente</p>
             <div className="grid grid-cols-3 gap-4">
+              {/* Búsqueda NIT o nombre */}
+              <div className="col-span-2 relative" ref={dropdownRef}>
+                <label className={lbl}>Buscar por NIT o nombre *</label>
+                <input
+                  className={inp}
+                  value={clienteQuery}
+                  onChange={(e) => onClienteQueryChange(e.target.value)}
+                  onFocus={() => clienteQuery && setMostrarDropdown(true)}
+                  placeholder="Escriba NIT o nombre del cliente..."
+                  autoComplete="off"
+                  required
+                />
+                {mostrarDropdown && sugerencias.length > 0 && (
+                  <div className="absolute z-10 top-full mt-1 left-0 right-0 bg-white border border-gray-200 rounded-xl shadow-lg overflow-hidden">
+                    {sugerencias.map((c, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => seleccionarCliente(c)}
+                        className="w-full flex items-center gap-3 px-4 py-2.5 hover:bg-amber-50 transition-colors text-left"
+                      >
+                        <span className="text-xs font-mono text-gray-400 w-28 shrink-0">{c.nit || "—"}</span>
+                        <span className="text-sm text-gray-800 truncate">{c.nombre}</span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
               <div>
                 <label className={lbl}>NIT</label>
-                <input className={inp} value={form.nit} onChange={(e) => set("nit", e.target.value)} placeholder="900.123.456-7" />
-              </div>
-              <div className="col-span-2">
-                <label className={lbl}>Cliente (nombre empresa) *</label>
-                <input className={inp} value={form.cliente_nombre_somos} onChange={(e) => set("cliente_nombre_somos", e.target.value)} placeholder="Nombre de la empresa" required />
+                <input
+                  className={inp}
+                  value={form.nit}
+                  onChange={(e) => set("nit", e.target.value)}
+                  placeholder="900.123.456-7"
+                />
               </div>
             </div>
           </div>
@@ -182,7 +251,7 @@ export default function NuevoContratoModal({ onClose, onGuardado, contratoEditar
                 </select>
               </div>
             </div>
-            <div className="grid grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-3 gap-4">
               <div>
                 <label className={lbl}>Meses contrato</label>
                 <input type="number" className={inp} value={form.meses_contrato} onChange={(e) => set("meses_contrato", e.target.value)} placeholder="12" min={0} />
@@ -192,21 +261,11 @@ export default function NuevoContratoModal({ onClose, onGuardado, contratoEditar
                 <input type="number" className={inp} value={form.cantidad_horas_contrato} onChange={(e) => set("cantidad_horas_contrato", e.target.value)} placeholder="0" min={0} step="0.5" />
               </div>
               <div>
-                <label className={lbl}>Mes facturación</label>
-                <input className={inp} value={form.mes_contrato} onChange={(e) => set("mes_contrato", e.target.value)} placeholder="ej. Enero 2026" />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
                 <label className={lbl}>Comercial</label>
                 <select className={inp} value={form.comercialId} onChange={(e) => set("comercialId", e.target.value)}>
                   <option value="">Sin comercial</option>
                   {comerciales.map((c) => <option key={c.id_comercial} value={c.id_comercial}>{c.username}</option>)}
                 </select>
-              </div>
-              <div>
-                <label className={lbl}>ID Cliente (SOMOS)</label>
-                <input type="number" className={inp} value={form.clienteId} onChange={(e) => set("clienteId", e.target.value)} placeholder="ID en sistema SOMOS" min={0} />
               </div>
             </div>
           </div>
@@ -214,7 +273,7 @@ export default function NuevoContratoModal({ onClose, onGuardado, contratoEditar
           {/* ── Sección 3: Fechas ── */}
           <div>
             <p className={sec}>Fechas</p>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 gap-4">
               <div>
                 <label className={lbl}>Fecha inicio</label>
                 <input type="date" className={inp} value={form.fecha_inicio} onChange={(e) => set("fecha_inicio", e.target.value)} />
@@ -223,21 +282,13 @@ export default function NuevoContratoModal({ onClose, onGuardado, contratoEditar
                 <label className={lbl}>Fecha vencimiento</label>
                 <input type="date" className={inp} value={form.finalizacion_contrato} onChange={(e) => set("finalizacion_contrato", e.target.value)} />
               </div>
-              <div>
-                <label className={lbl}>Fecha gen. factura</label>
-                <input type="date" className={inp} value={form.fecha_generacion_factura} onChange={(e) => set("fecha_generacion_factura", e.target.value)} />
-              </div>
-              <div>
-                <label className={lbl}>Fecha cobro</label>
-                <input type="date" className={inp} value={form.fecha_vencimiento_factura} onChange={(e) => set("fecha_vencimiento_factura", e.target.value)} />
-              </div>
             </div>
           </div>
 
-          {/* ── Sección 4: Costos del proyecto ── */}
+          {/* ── Sección 4: Costos ── */}
           <div>
             <p className={sec}>Estructura de costos</p>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-4">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
               <div>
                 <label className={lbl}>Costos (COP)</label>
                 <input type="number" className={inp} value={form.costos} onChange={(e) => recalcularTotal("costos", e.target.value)} placeholder="0" min={0} />
@@ -254,24 +305,24 @@ export default function NuevoContratoModal({ onClose, onGuardado, contratoEditar
                 <label className={lbl}>$ Rent (COP)</label>
                 <input type="number" className={inp} value={form.rent} onChange={(e) => recalcularTotal("rent", e.target.value)} placeholder="0" min={0} />
               </div>
-              <div>
-                <label className={lbl}>Total proyecto (COP)</label>
-                <input type="number" className={`${inp} font-semibold bg-gray-50`} value={form.total_proyecto} onChange={(e) => set("total_proyecto", e.target.value)} placeholder="0" min={0} />
-              </div>
-              <div>
-                <label className={lbl}>Valor contrato (COP)</label>
-                <input type="number" className={inp} value={form.valor} onChange={(e) => set("valor", e.target.value)} placeholder="0" min={0} />
-              </div>
             </div>
-            <div className="flex items-center gap-6">
-              <label className="flex items-center gap-2 cursor-pointer">
+            <div className="grid grid-cols-2 gap-4 items-end">
+              <div>
+                <label className={lbl}>Total / Valor contrato (COP)</label>
+                <input
+                  type="number"
+                  className={`${inp} font-semibold bg-gray-50`}
+                  value={form.total_proyecto}
+                  onChange={(e) => set("total_proyecto", e.target.value)}
+                  placeholder="Se calcula automáticamente"
+                  min={0}
+                />
+                <p className="text-xs text-gray-400 mt-1">Se suma automáticamente de costos + auditoría + imprevistos + rent</p>
+              </div>
+              <div className="flex items-center gap-2 pb-1">
                 <input type="checkbox" checked={form.tiene_iva} onChange={(e) => set("tiene_iva", e.target.checked)} className="w-4 h-4 rounded border-gray-300 accent-[#514737]" />
                 <span className="text-sm font-medium text-gray-700">Aplica IVA</span>
-              </label>
-              <label className="flex items-center gap-2 cursor-pointer">
-                <input type="checkbox" checked={form.esta_facturado} onChange={(e) => set("esta_facturado", e.target.checked)} className="w-4 h-4 rounded border-gray-300 accent-[#514737]" />
-                <span className="text-sm font-medium text-gray-700">Ya está facturado</span>
-              </label>
+              </div>
             </div>
           </div>
 
@@ -280,6 +331,7 @@ export default function NuevoContratoModal({ onClose, onGuardado, contratoEditar
             <label className={lbl}>Observaciones</label>
             <textarea className={`${inp} resize-none`} rows={2} value={form.observaciones} onChange={(e) => set("observaciones", e.target.value)} placeholder="Notas adicionales..." />
           </div>
+
         </form>
 
         {/* Footer */}

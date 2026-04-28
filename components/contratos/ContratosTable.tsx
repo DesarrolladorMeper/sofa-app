@@ -17,6 +17,39 @@ const BADGE: Record<string, string> = {
   CANCELADO: "bg-gray-100 text-gray-500",
 };
 
+function BarraFacturacion({ contrato }: { contrato: Contrato }) {
+  const totalContrato = Number(contrato.total_proyecto) || 0;
+  const totalFacturado = contrato.facturas.reduce((acc, f) => acc + Number(f.valor_total), 0);
+  const count = contrato.facturas.length;
+
+  if (totalContrato === 0) {
+    return (
+      <span className="text-xs text-gray-300">
+        {count > 0 ? `${count} factura(s)` : "—"}
+      </span>
+    );
+  }
+
+  const pct = Math.min(Math.round((totalFacturado / totalContrato) * 100), 100);
+  const color =
+    pct >= 100 ? "bg-green-500" :
+    pct >= 60  ? "bg-blue-500"  :
+    pct >= 30  ? "bg-yellow-400" :
+                 "bg-gray-300";
+
+  return (
+    <div className="flex flex-col gap-1 min-w-[100px]">
+      <div className="flex items-center justify-between gap-2">
+        <span className="text-xs font-semibold text-gray-700">{pct}%</span>
+        <span className="text-xs text-gray-400">{count} fac.</span>
+      </div>
+      <div className="h-1.5 w-full bg-gray-100 rounded-full overflow-hidden">
+        <div className={`h-full rounded-full transition-all ${color}`} style={{ width: `${pct}%` }} />
+      </div>
+    </div>
+  );
+}
+
 type Props = {
   contratos: Contrato[];
   selectedRows: number[];
@@ -53,9 +86,9 @@ export default function ContratosTable({ contratos, selectedRows, onSelectRow, o
             <th className="py-3 px-3 text-right font-semibold text-gray-600">Auditoría</th>
             <th className="py-3 px-3 text-right font-semibold text-gray-600">Imprevistos</th>
             <th className="py-3 px-3 text-right font-semibold text-gray-600">$ Rent</th>
-            <th className="py-3 px-3 text-right font-semibold text-gray-600 whitespace-nowrap">Total Proyecto</th>
+            <th className="py-3 px-3 text-right font-semibold text-gray-600 whitespace-nowrap">Total Contrato</th>
             <th className="py-3 px-3 text-left font-semibold text-gray-600">Estado</th>
-            <th className="py-3 px-3 text-center font-semibold text-gray-600">Facturado</th>
+            <th className="py-3 px-3 text-left font-semibold text-gray-600 whitespace-nowrap">% Facturado</th>
             <th className="py-3 px-3 text-left font-semibold text-gray-600">Comercial</th>
             <th className="py-3 px-3 text-center font-semibold text-gray-600">Acciones</th>
           </tr>
@@ -66,44 +99,32 @@ export default function ContratosTable({ contratos, selectedRows, onSelectRow, o
               <td className="py-2.5 px-3">
                 <input type="checkbox" checked={selectedRows.includes(c.id_contrato)} onChange={() => onSelectRow(c.id_contrato)} className="rounded border-gray-300" />
               </td>
-              <td className="py-2.5 px-3 text-gray-500 text-xs whitespace-nowrap">{c.nit ?? "—"}</td>
+              <td className="py-2.5 px-3 text-gray-400 text-xs whitespace-nowrap font-mono">{c.nit ?? "—"}</td>
               <td className="py-2.5 px-3 text-gray-800 max-w-[160px] truncate font-medium" title={c.cliente_nombre_somos}>
                 {c.cliente_nombre_somos}
               </td>
               <td className="py-2.5 px-3 font-mono font-semibold text-[#514737] whitespace-nowrap text-xs">
                 {c.numero_contrato}
               </td>
-              <td className="py-2.5 px-3 text-gray-500 text-xs">{c.pte ?? "—"}</td>
+              <td className="py-2.5 px-3 text-gray-400 text-xs">{c.pte ?? "—"}</td>
               <td className="py-2.5 px-3 text-center text-gray-600">{c.meses_contrato ?? "—"}</td>
               <td className="py-2.5 px-3 text-center text-gray-600">{c.cantidad_horas_contrato ?? "—"}</td>
               <td className="py-2.5 px-3 text-gray-600 whitespace-nowrap text-xs">{fecha(c.fecha_inicio)}</td>
               <td className="py-2.5 px-3 text-gray-600 whitespace-nowrap text-xs">{fecha(c.finalizacion_contrato)}</td>
-              <td className="py-2.5 px-3 text-right text-gray-700 whitespace-nowrap text-xs">{COP(c.costos)}</td>
-              <td className="py-2.5 px-3 text-right text-gray-700 whitespace-nowrap text-xs">{COP(c.auditoria)}</td>
-              <td className="py-2.5 px-3 text-right text-gray-700 whitespace-nowrap text-xs">{COP(c.imprevistos)}</td>
-              <td className="py-2.5 px-3 text-right text-gray-700 whitespace-nowrap text-xs">{COP(c.rent)}</td>
+              <td className="py-2.5 px-3 text-right text-gray-600 whitespace-nowrap text-xs">{COP(c.costos)}</td>
+              <td className="py-2.5 px-3 text-right text-gray-600 whitespace-nowrap text-xs">{COP(c.auditoria)}</td>
+              <td className="py-2.5 px-3 text-right text-gray-600 whitespace-nowrap text-xs">{COP(c.imprevistos)}</td>
+              <td className="py-2.5 px-3 text-right text-gray-600 whitespace-nowrap text-xs">{COP(c.rent)}</td>
               <td className="py-2.5 px-3 text-right font-semibold text-gray-800 whitespace-nowrap text-xs">{COP(c.total_proyecto)}</td>
               <td className="py-2.5 px-3">
                 <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${BADGE[c.estado] ?? "bg-gray-100 text-gray-500"}`}>
                   {c.estado}
                 </span>
               </td>
-              <td className="py-2.5 px-3 text-center">
-                {c.esta_facturado ? (
-                  <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
-                    <svg className="w-3 h-3 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </span>
-                ) : (
-                  <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-gray-100">
-                    <svg className="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  </span>
-                )}
+              <td className="py-2.5 px-3">
+                <BarraFacturacion contrato={c} />
               </td>
-              <td className="py-2.5 px-3 text-gray-500 text-xs">{c.comercial?.username ?? "—"}</td>
+              <td className="py-2.5 px-3 text-gray-400 text-xs">{c.comercial?.username ?? "—"}</td>
               <td className="py-2.5 px-3">
                 <div className="flex items-center justify-center gap-1.5">
                   <button onClick={() => onEdit(c)} className="p-1.5 rounded-lg text-gray-400 hover:text-[#514737] hover:bg-amber-50 transition-colors" title="Editar">

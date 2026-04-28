@@ -5,6 +5,10 @@ export type Comercial = {
   porcentaje_comision: number | null;
 };
 
+export type FacturaResumen = {
+  valor_total: number | string;
+};
+
 export type Contrato = {
   id_contrato: number;
   nit: string | null;
@@ -12,12 +16,9 @@ export type Contrato = {
   cliente_nombre_somos: string;
   numero_contrato: string;
   pte: string | null;
-  mes_contrato: string | null;
   meses_contrato: number | null;
   cantidad_horas_contrato: number | null;
   fecha_inicio: string | null;
-  fecha_generacion_factura: string | null;
-  fecha_vencimiento_factura: string | null;
   finalizacion_contrato: string | null;
   valor: number | string;
   tiene_iva: boolean;
@@ -31,6 +32,12 @@ export type Contrato = {
   esta_facturado: boolean;
   comercialId: number | null;
   comercial: Comercial | null;
+  facturas: FacturaResumen[];
+};
+
+export type ClienteSugerencia = {
+  nit: string;
+  nombre: string;
 };
 
 export type FiltrosContrato = {

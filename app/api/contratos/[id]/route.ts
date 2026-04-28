@@ -9,13 +9,11 @@ export async function GET(
     const { id } = await params;
     const contrato = await prisma.contrato.findUnique({
       where: { id_contrato: Number(id) },
-      include: { comercial: true, facturas: true },
+      include: { comercial: true, facturas: { select: { valor_total: true } } },
     });
-    if (!contrato) {
-      return NextResponse.json({ error: "Contrato no encontrado" }, { status: 404 });
-    }
+    if (!contrato) return NextResponse.json({ error: "Contrato no encontrado" }, { status: 404 });
     return NextResponse.json(contrato);
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Error al obtener el contrato" }, { status: 500 });
   }
 }
@@ -27,6 +25,7 @@ export async function PUT(
   try {
     const { id } = await params;
     const body = await request.json();
+    const total = body.total_proyecto ? BigInt(body.total_proyecto) : null;
 
     const contrato = await prisma.contrato.update({
       where: { id_contrato: Number(id) },
@@ -36,26 +35,22 @@ export async function PUT(
         cliente_nombre_somos: body.cliente_nombre_somos,
         numero_contrato: body.numero_contrato,
         pte: body.pte || null,
-        mes_contrato: body.mes_contrato || null,
         meses_contrato: body.meses_contrato ? Number(body.meses_contrato) : null,
         cantidad_horas_contrato: body.cantidad_horas_contrato ? Number(body.cantidad_horas_contrato) : null,
         fecha_inicio: body.fecha_inicio ? new Date(body.fecha_inicio) : null,
-        fecha_generacion_factura: body.fecha_generacion_factura ? new Date(body.fecha_generacion_factura) : null,
-        fecha_vencimiento_factura: body.fecha_vencimiento_factura ? new Date(body.fecha_vencimiento_factura) : null,
         finalizacion_contrato: body.finalizacion_contrato ? new Date(body.finalizacion_contrato) : null,
-        valor: BigInt(body.valor || 0),
+        valor: total ?? BigInt(0),
         tiene_iva: Boolean(body.tiene_iva),
         costos: body.costos ? BigInt(body.costos) : null,
         auditoria: body.auditoria ? BigInt(body.auditoria) : null,
         imprevistos: body.imprevistos ? BigInt(body.imprevistos) : null,
         rent: body.rent ? BigInt(body.rent) : null,
-        total_proyecto: body.total_proyecto ? BigInt(body.total_proyecto) : null,
+        total_proyecto: total,
         estado: body.estado,
         observaciones: body.observaciones || null,
-        esta_facturado: Boolean(body.esta_facturado),
         comercialId: body.comercialId ? Number(body.comercialId) : null,
       },
-      include: { comercial: true },
+      include: { comercial: true, facturas: { select: { valor_total: true } } },
     });
 
     return NextResponse.json(contrato);
@@ -73,7 +68,7 @@ export async function DELETE(
     const { id } = await params;
     await prisma.contrato.delete({ where: { id_contrato: Number(id) } });
     return NextResponse.json({ message: "Contrato eliminado" });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: "Error al eliminar el contrato" }, { status: 500 });
   }
 }
