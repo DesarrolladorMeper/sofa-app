@@ -63,6 +63,11 @@ export type contrato = Prisma.contratoModel
  */
 export type factura = Prisma.facturaModel
 /**
+ * Model propuesta
+ * 
+ */
+export type propuesta = Prisma.propuestaModel
+/**
  * Model obligaciones
  * 
  */

@@ -214,6 +214,7 @@ export type comercialWhereInput = {
   porcentaje_comision?: Prisma.FloatNullableFilter<"comercial"> | number | null
   contratos?: Prisma.ContratoListRelationFilter
   facturas?: Prisma.FacturaListRelationFilter
+  propuestas?: Prisma.PropuestaListRelationFilter
 }
 
 export type comercialOrderByWithRelationInput = {
@@ -223,6 +224,7 @@ export type comercialOrderByWithRelationInput = {
   porcentaje_comision?: Prisma.SortOrderInput | Prisma.SortOrder
   contratos?: Prisma.contratoOrderByRelationAggregateInput
   facturas?: Prisma.facturaOrderByRelationAggregateInput
+  propuestas?: Prisma.propuestaOrderByRelationAggregateInput
   _relevance?: Prisma.comercialOrderByRelevanceInput
 }
 
@@ -236,6 +238,7 @@ export type comercialWhereUniqueInput = Prisma.AtLeast<{
   porcentaje_comision?: Prisma.FloatNullableFilter<"comercial"> | number | null
   contratos?: Prisma.ContratoListRelationFilter
   facturas?: Prisma.FacturaListRelationFilter
+  propuestas?: Prisma.PropuestaListRelationFilter
 }, "id_comercial" | "username">
 
 export type comercialOrderByWithAggregationInput = {
@@ -266,6 +269,7 @@ export type comercialCreateInput = {
   porcentaje_comision?: number | null
   contratos?: Prisma.contratoCreateNestedManyWithoutComercialInput
   facturas?: Prisma.facturaCreateNestedManyWithoutComercialInput
+  propuestas?: Prisma.propuestaCreateNestedManyWithoutComercialInput
 }
 
 export type comercialUncheckedCreateInput = {
@@ -275,6 +279,7 @@ export type comercialUncheckedCreateInput = {
   porcentaje_comision?: number | null
   contratos?: Prisma.contratoUncheckedCreateNestedManyWithoutComercialInput
   facturas?: Prisma.facturaUncheckedCreateNestedManyWithoutComercialInput
+  propuestas?: Prisma.propuestaUncheckedCreateNestedManyWithoutComercialInput
 }
 
 export type comercialUpdateInput = {
@@ -283,6 +288,7 @@ export type comercialUpdateInput = {
   porcentaje_comision?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   contratos?: Prisma.contratoUpdateManyWithoutComercialNestedInput
   facturas?: Prisma.facturaUpdateManyWithoutComercialNestedInput
+  propuestas?: Prisma.propuestaUpdateManyWithoutComercialNestedInput
 }
 
 export type comercialUncheckedUpdateInput = {
@@ -292,6 +298,7 @@ export type comercialUncheckedUpdateInput = {
   porcentaje_comision?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   contratos?: Prisma.contratoUncheckedUpdateManyWithoutComercialNestedInput
   facturas?: Prisma.facturaUncheckedUpdateManyWithoutComercialNestedInput
+  propuestas?: Prisma.propuestaUncheckedUpdateManyWithoutComercialNestedInput
 }
 
 export type comercialCreateManyInput = {
@@ -396,11 +403,28 @@ export type comercialUpdateOneWithoutFacturasNestedInput = {
   update?: Prisma.XOR<Prisma.XOR<Prisma.comercialUpdateToOneWithWhereWithoutFacturasInput, Prisma.comercialUpdateWithoutFacturasInput>, Prisma.comercialUncheckedUpdateWithoutFacturasInput>
 }
 
+export type comercialCreateNestedOneWithoutPropuestasInput = {
+  create?: Prisma.XOR<Prisma.comercialCreateWithoutPropuestasInput, Prisma.comercialUncheckedCreateWithoutPropuestasInput>
+  connectOrCreate?: Prisma.comercialCreateOrConnectWithoutPropuestasInput
+  connect?: Prisma.comercialWhereUniqueInput
+}
+
+export type comercialUpdateOneWithoutPropuestasNestedInput = {
+  create?: Prisma.XOR<Prisma.comercialCreateWithoutPropuestasInput, Prisma.comercialUncheckedCreateWithoutPropuestasInput>
+  connectOrCreate?: Prisma.comercialCreateOrConnectWithoutPropuestasInput
+  upsert?: Prisma.comercialUpsertWithoutPropuestasInput
+  disconnect?: Prisma.comercialWhereInput | boolean
+  delete?: Prisma.comercialWhereInput | boolean
+  connect?: Prisma.comercialWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.comercialUpdateToOneWithWhereWithoutPropuestasInput, Prisma.comercialUpdateWithoutPropuestasInput>, Prisma.comercialUncheckedUpdateWithoutPropuestasInput>
+}
+
 export type comercialCreateWithoutContratosInput = {
   username: string
   tiene_comision_comercial: boolean
   porcentaje_comision?: number | null
   facturas?: Prisma.facturaCreateNestedManyWithoutComercialInput
+  propuestas?: Prisma.propuestaCreateNestedManyWithoutComercialInput
 }
 
 export type comercialUncheckedCreateWithoutContratosInput = {
@@ -409,6 +433,7 @@ export type comercialUncheckedCreateWithoutContratosInput = {
   tiene_comision_comercial: boolean
   porcentaje_comision?: number | null
   facturas?: Prisma.facturaUncheckedCreateNestedManyWithoutComercialInput
+  propuestas?: Prisma.propuestaUncheckedCreateNestedManyWithoutComercialInput
 }
 
 export type comercialCreateOrConnectWithoutContratosInput = {
@@ -432,6 +457,7 @@ export type comercialUpdateWithoutContratosInput = {
   tiene_comision_comercial?: Prisma.BoolFieldUpdateOperationsInput | boolean
   porcentaje_comision?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   facturas?: Prisma.facturaUpdateManyWithoutComercialNestedInput
+  propuestas?: Prisma.propuestaUpdateManyWithoutComercialNestedInput
 }
 
 export type comercialUncheckedUpdateWithoutContratosInput = {
@@ -440,6 +466,7 @@ export type comercialUncheckedUpdateWithoutContratosInput = {
   tiene_comision_comercial?: Prisma.BoolFieldUpdateOperationsInput | boolean
   porcentaje_comision?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   facturas?: Prisma.facturaUncheckedUpdateManyWithoutComercialNestedInput
+  propuestas?: Prisma.propuestaUncheckedUpdateManyWithoutComercialNestedInput
 }
 
 export type comercialCreateWithoutFacturasInput = {
@@ -447,6 +474,7 @@ export type comercialCreateWithoutFacturasInput = {
   tiene_comision_comercial: boolean
   porcentaje_comision?: number | null
   contratos?: Prisma.contratoCreateNestedManyWithoutComercialInput
+  propuestas?: Prisma.propuestaCreateNestedManyWithoutComercialInput
 }
 
 export type comercialUncheckedCreateWithoutFacturasInput = {
@@ -455,6 +483,7 @@ export type comercialUncheckedCreateWithoutFacturasInput = {
   tiene_comision_comercial: boolean
   porcentaje_comision?: number | null
   contratos?: Prisma.contratoUncheckedCreateNestedManyWithoutComercialInput
+  propuestas?: Prisma.propuestaUncheckedCreateNestedManyWithoutComercialInput
 }
 
 export type comercialCreateOrConnectWithoutFacturasInput = {
@@ -478,6 +507,7 @@ export type comercialUpdateWithoutFacturasInput = {
   tiene_comision_comercial?: Prisma.BoolFieldUpdateOperationsInput | boolean
   porcentaje_comision?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   contratos?: Prisma.contratoUpdateManyWithoutComercialNestedInput
+  propuestas?: Prisma.propuestaUpdateManyWithoutComercialNestedInput
 }
 
 export type comercialUncheckedUpdateWithoutFacturasInput = {
@@ -486,6 +516,57 @@ export type comercialUncheckedUpdateWithoutFacturasInput = {
   tiene_comision_comercial?: Prisma.BoolFieldUpdateOperationsInput | boolean
   porcentaje_comision?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
   contratos?: Prisma.contratoUncheckedUpdateManyWithoutComercialNestedInput
+  propuestas?: Prisma.propuestaUncheckedUpdateManyWithoutComercialNestedInput
+}
+
+export type comercialCreateWithoutPropuestasInput = {
+  username: string
+  tiene_comision_comercial: boolean
+  porcentaje_comision?: number | null
+  contratos?: Prisma.contratoCreateNestedManyWithoutComercialInput
+  facturas?: Prisma.facturaCreateNestedManyWithoutComercialInput
+}
+
+export type comercialUncheckedCreateWithoutPropuestasInput = {
+  id_comercial?: number
+  username: string
+  tiene_comision_comercial: boolean
+  porcentaje_comision?: number | null
+  contratos?: Prisma.contratoUncheckedCreateNestedManyWithoutComercialInput
+  facturas?: Prisma.facturaUncheckedCreateNestedManyWithoutComercialInput
+}
+
+export type comercialCreateOrConnectWithoutPropuestasInput = {
+  where: Prisma.comercialWhereUniqueInput
+  create: Prisma.XOR<Prisma.comercialCreateWithoutPropuestasInput, Prisma.comercialUncheckedCreateWithoutPropuestasInput>
+}
+
+export type comercialUpsertWithoutPropuestasInput = {
+  update: Prisma.XOR<Prisma.comercialUpdateWithoutPropuestasInput, Prisma.comercialUncheckedUpdateWithoutPropuestasInput>
+  create: Prisma.XOR<Prisma.comercialCreateWithoutPropuestasInput, Prisma.comercialUncheckedCreateWithoutPropuestasInput>
+  where?: Prisma.comercialWhereInput
+}
+
+export type comercialUpdateToOneWithWhereWithoutPropuestasInput = {
+  where?: Prisma.comercialWhereInput
+  data: Prisma.XOR<Prisma.comercialUpdateWithoutPropuestasInput, Prisma.comercialUncheckedUpdateWithoutPropuestasInput>
+}
+
+export type comercialUpdateWithoutPropuestasInput = {
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  tiene_comision_comercial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  porcentaje_comision?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  contratos?: Prisma.contratoUpdateManyWithoutComercialNestedInput
+  facturas?: Prisma.facturaUpdateManyWithoutComercialNestedInput
+}
+
+export type comercialUncheckedUpdateWithoutPropuestasInput = {
+  id_comercial?: Prisma.IntFieldUpdateOperationsInput | number
+  username?: Prisma.StringFieldUpdateOperationsInput | string
+  tiene_comision_comercial?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  porcentaje_comision?: Prisma.NullableFloatFieldUpdateOperationsInput | number | null
+  contratos?: Prisma.contratoUncheckedUpdateManyWithoutComercialNestedInput
+  facturas?: Prisma.facturaUncheckedUpdateManyWithoutComercialNestedInput
 }
 
 
@@ -496,11 +577,13 @@ export type comercialUncheckedUpdateWithoutFacturasInput = {
 export type ComercialCountOutputType = {
   contratos: number
   facturas: number
+  propuestas: number
 }
 
 export type ComercialCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   contratos?: boolean | ComercialCountOutputTypeCountContratosArgs
   facturas?: boolean | ComercialCountOutputTypeCountFacturasArgs
+  propuestas?: boolean | ComercialCountOutputTypeCountPropuestasArgs
 }
 
 /**
@@ -527,6 +610,13 @@ export type ComercialCountOutputTypeCountFacturasArgs<ExtArgs extends runtime.Ty
   where?: Prisma.facturaWhereInput
 }
 
+/**
+ * ComercialCountOutputType without action
+ */
+export type ComercialCountOutputTypeCountPropuestasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.propuestaWhereInput
+}
+
 
 export type comercialSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id_comercial?: boolean
@@ -535,6 +625,7 @@ export type comercialSelect<ExtArgs extends runtime.Types.Extensions.InternalArg
   porcentaje_comision?: boolean
   contratos?: boolean | Prisma.comercial$contratosArgs<ExtArgs>
   facturas?: boolean | Prisma.comercial$facturasArgs<ExtArgs>
+  propuestas?: boolean | Prisma.comercial$propuestasArgs<ExtArgs>
   _count?: boolean | Prisma.ComercialCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["comercial"]>
 
@@ -551,6 +642,7 @@ export type comercialOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs 
 export type comercialInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   contratos?: boolean | Prisma.comercial$contratosArgs<ExtArgs>
   facturas?: boolean | Prisma.comercial$facturasArgs<ExtArgs>
+  propuestas?: boolean | Prisma.comercial$propuestasArgs<ExtArgs>
   _count?: boolean | Prisma.ComercialCountOutputTypeDefaultArgs<ExtArgs>
 }
 
@@ -559,6 +651,7 @@ export type $comercialPayload<ExtArgs extends runtime.Types.Extensions.InternalA
   objects: {
     contratos: Prisma.$contratoPayload<ExtArgs>[]
     facturas: Prisma.$facturaPayload<ExtArgs>[]
+    propuestas: Prisma.$propuestaPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id_comercial: number
@@ -907,6 +1000,7 @@ export interface Prisma__comercialClient<T, Null = never, ExtArgs extends runtim
   readonly [Symbol.toStringTag]: "PrismaPromise"
   contratos<T extends Prisma.comercial$contratosArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.comercial$contratosArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$contratoPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   facturas<T extends Prisma.comercial$facturasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.comercial$facturasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$facturaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  propuestas<T extends Prisma.comercial$propuestasArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.comercial$propuestasArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$propuestaPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1333,6 +1427,30 @@ export type comercial$facturasArgs<ExtArgs extends runtime.Types.Extensions.Inte
   take?: number
   skip?: number
   distinct?: Prisma.FacturaScalarFieldEnum | Prisma.FacturaScalarFieldEnum[]
+}
+
+/**
+ * comercial.propuestas
+ */
+export type comercial$propuestasArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the propuesta
+   */
+  select?: Prisma.propuestaSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the propuesta
+   */
+  omit?: Prisma.propuestaOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.propuestaInclude<ExtArgs> | null
+  where?: Prisma.propuestaWhereInput
+  orderBy?: Prisma.propuestaOrderByWithRelationInput | Prisma.propuestaOrderByWithRelationInput[]
+  cursor?: Prisma.propuestaWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.PropuestaScalarFieldEnum | Prisma.PropuestaScalarFieldEnum[]
 }
 
 /**

@@ -59,12 +59,13 @@ model categoria_presupuesto {
 }
 
 model comercial {
-  id_comercial             Int        @id @default(autoincrement())
-  username                 String     @unique
+  id_comercial             Int         @id @default(autoincrement())
+  username                 String      @unique
   tiene_comision_comercial Boolean
   porcentaje_comision      Float?
   contratos                contrato[]
   facturas                 factura[]
+  propuestas               propuesta[]
 }
 
 model contrato {
@@ -121,6 +122,28 @@ model factura {
 
   @@index([comercialId], map: "factura_comercialId_fkey")
   @@index([contratoId], map: "factura_contratoId_fkey")
+}
+
+model propuesta {
+  id_propuesta         Int        @id @default(autoincrement())
+  nit                  String?
+  clienteId            Int        @default(0)
+  cliente_nombre_somos String
+  numero_propuesta     String     @unique
+  pte                  String?
+  tipo_servicio        String?
+  meses_propuesta      Int?
+  cantidad_horas       Float?
+  fecha_propuesta      DateTime?  @db.Date
+  fecha_vencimiento    DateTime?  @db.Date
+  valor_propuesta      BigInt     @default(0)
+  estado               String     @default("PENDIENTE")
+  observaciones        String?    @db.Text
+  comercialId          Int?
+  contratoId           Int?
+  comercial            comercial? @relation(fields: [comercialId], references: [id_comercial])
+
+  @@index([comercialId], map: "propuesta_comercialId_fkey")
 }
 
 model obligaciones {

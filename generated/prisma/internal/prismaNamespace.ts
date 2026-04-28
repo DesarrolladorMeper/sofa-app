@@ -393,6 +393,7 @@ export const ModelName = {
   comercial: 'comercial',
   contrato: 'contrato',
   factura: 'factura',
+  propuesta: 'propuesta',
   obligaciones: 'obligaciones'
 } as const
 
@@ -409,7 +410,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "usuarios" | "roles" | "usuarios_roles" | "permisos_roles" | "seccion_categoria_presupuesto" | "categoria_presupuesto" | "comercial" | "contrato" | "factura" | "obligaciones"
+    modelProps: "usuarios" | "roles" | "usuarios_roles" | "permisos_roles" | "seccion_categoria_presupuesto" | "categoria_presupuesto" | "comercial" | "contrato" | "factura" | "propuesta" | "obligaciones"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -1007,6 +1008,72 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    propuesta: {
+      payload: Prisma.$propuestaPayload<ExtArgs>
+      fields: Prisma.propuestaFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.propuestaFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$propuestaPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.propuestaFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$propuestaPayload>
+        }
+        findFirst: {
+          args: Prisma.propuestaFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$propuestaPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.propuestaFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$propuestaPayload>
+        }
+        findMany: {
+          args: Prisma.propuestaFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$propuestaPayload>[]
+        }
+        create: {
+          args: Prisma.propuestaCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$propuestaPayload>
+        }
+        createMany: {
+          args: Prisma.propuestaCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        delete: {
+          args: Prisma.propuestaDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$propuestaPayload>
+        }
+        update: {
+          args: Prisma.propuestaUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$propuestaPayload>
+        }
+        deleteMany: {
+          args: Prisma.propuestaDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.propuestaUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        upsert: {
+          args: Prisma.propuestaUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$propuestaPayload>
+        }
+        aggregate: {
+          args: Prisma.PropuestaAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePropuesta>
+        }
+        groupBy: {
+          args: Prisma.propuestaGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PropuestaGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.propuestaCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PropuestaCountAggregateOutputType> | number
+        }
+      }
+    }
     obligaciones: {
       payload: Prisma.$obligacionesPayload<ExtArgs>
       fields: Prisma.obligacionesFieldRefs
@@ -1226,6 +1293,28 @@ export const FacturaScalarFieldEnum = {
 export type FacturaScalarFieldEnum = (typeof FacturaScalarFieldEnum)[keyof typeof FacturaScalarFieldEnum]
 
 
+export const PropuestaScalarFieldEnum = {
+  id_propuesta: 'id_propuesta',
+  nit: 'nit',
+  clienteId: 'clienteId',
+  cliente_nombre_somos: 'cliente_nombre_somos',
+  numero_propuesta: 'numero_propuesta',
+  pte: 'pte',
+  tipo_servicio: 'tipo_servicio',
+  meses_propuesta: 'meses_propuesta',
+  cantidad_horas: 'cantidad_horas',
+  fecha_propuesta: 'fecha_propuesta',
+  fecha_vencimiento: 'fecha_vencimiento',
+  valor_propuesta: 'valor_propuesta',
+  estado: 'estado',
+  observaciones: 'observaciones',
+  comercialId: 'comercialId',
+  contratoId: 'contratoId'
+} as const
+
+export type PropuestaScalarFieldEnum = (typeof PropuestaScalarFieldEnum)[keyof typeof PropuestaScalarFieldEnum]
+
+
 export const ObligacionesScalarFieldEnum = {
   id_obligacion: 'id_obligacion',
   fecha: 'fecha',
@@ -1326,6 +1415,19 @@ export const facturaOrderByRelevanceFieldEnum = {
 } as const
 
 export type facturaOrderByRelevanceFieldEnum = (typeof facturaOrderByRelevanceFieldEnum)[keyof typeof facturaOrderByRelevanceFieldEnum]
+
+
+export const propuestaOrderByRelevanceFieldEnum = {
+  nit: 'nit',
+  cliente_nombre_somos: 'cliente_nombre_somos',
+  numero_propuesta: 'numero_propuesta',
+  pte: 'pte',
+  tipo_servicio: 'tipo_servicio',
+  estado: 'estado',
+  observaciones: 'observaciones'
+} as const
+
+export type propuestaOrderByRelevanceFieldEnum = (typeof propuestaOrderByRelevanceFieldEnum)[keyof typeof propuestaOrderByRelevanceFieldEnum]
 
 
 export const obligacionesOrderByRelevanceFieldEnum = {
@@ -1492,6 +1594,7 @@ export type GlobalOmitConfig = {
   comercial?: Prisma.comercialOmit
   contrato?: Prisma.contratoOmit
   factura?: Prisma.facturaOmit
+  propuesta?: Prisma.propuestaOmit
   obligaciones?: Prisma.obligacionesOmit
 }
 

@@ -60,6 +60,7 @@ export const ModelName = {
   comercial: 'comercial',
   contrato: 'contrato',
   factura: 'factura',
+  propuesta: 'propuesta',
   obligaciones: 'obligaciones'
 } as const
 
@@ -193,6 +194,28 @@ export const FacturaScalarFieldEnum = {
 export type FacturaScalarFieldEnum = (typeof FacturaScalarFieldEnum)[keyof typeof FacturaScalarFieldEnum]
 
 
+export const PropuestaScalarFieldEnum = {
+  id_propuesta: 'id_propuesta',
+  nit: 'nit',
+  clienteId: 'clienteId',
+  cliente_nombre_somos: 'cliente_nombre_somos',
+  numero_propuesta: 'numero_propuesta',
+  pte: 'pte',
+  tipo_servicio: 'tipo_servicio',
+  meses_propuesta: 'meses_propuesta',
+  cantidad_horas: 'cantidad_horas',
+  fecha_propuesta: 'fecha_propuesta',
+  fecha_vencimiento: 'fecha_vencimiento',
+  valor_propuesta: 'valor_propuesta',
+  estado: 'estado',
+  observaciones: 'observaciones',
+  comercialId: 'comercialId',
+  contratoId: 'contratoId'
+} as const
+
+export type PropuestaScalarFieldEnum = (typeof PropuestaScalarFieldEnum)[keyof typeof PropuestaScalarFieldEnum]
+
+
 export const ObligacionesScalarFieldEnum = {
   id_obligacion: 'id_obligacion',
   fecha: 'fecha',
@@ -293,6 +316,19 @@ export const facturaOrderByRelevanceFieldEnum = {
 } as const
 
 export type facturaOrderByRelevanceFieldEnum = (typeof facturaOrderByRelevanceFieldEnum)[keyof typeof facturaOrderByRelevanceFieldEnum]
+
+
+export const propuestaOrderByRelevanceFieldEnum = {
+  nit: 'nit',
+  cliente_nombre_somos: 'cliente_nombre_somos',
+  numero_propuesta: 'numero_propuesta',
+  pte: 'pte',
+  tipo_servicio: 'tipo_servicio',
+  estado: 'estado',
+  observaciones: 'observaciones'
+} as const
+
+export type propuestaOrderByRelevanceFieldEnum = (typeof propuestaOrderByRelevanceFieldEnum)[keyof typeof propuestaOrderByRelevanceFieldEnum]
 
 
 export const obligacionesOrderByRelevanceFieldEnum = {

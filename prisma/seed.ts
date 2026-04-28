@@ -19,6 +19,7 @@ const d = (s: string) => new Date(s);
 
 async function main() {
   console.log("🗑️  Limpiando datos de demo...");
+  await prisma.propuesta.deleteMany();
   await prisma.factura.deleteMany();
   await prisma.contrato.deleteMany();
   await prisma.comercial.deleteMany();
@@ -304,13 +305,96 @@ async function main() {
     }});
   }
 
+  // ── 6. PROPUESTAS ─────────────────────────────────────────────────────────
+  console.log("📋 Creando propuestas...");
+  await Promise.all([
+    // APROBADAS — con contrato ya creado
+    prisma.propuesta.create({ data: {
+      nit: "900.321.654-1", clienteId: 7, cliente_nombre_somos: "Petroléos del Caribe S.A.S",
+      numero_propuesta: "PROP-2024-001", pte: "PTE994", tipo_servicio: "SST",
+      meses_propuesta: 12, cantidad_horas: 240,
+      fecha_propuesta: d("2024-11-10"), fecha_vencimiento: d("2024-12-10"),
+      valor_propuesta: 82_500_000n, estado: "APROBADO",
+      observaciones: "Propuesta aprobada. Contrato generado en enero 2025.",
+      comercialId: com2.id_comercial, contratoId: cPetrocari.id_contrato,
+    }}),
+    prisma.propuesta.create({ data: {
+      nit: "900.567.891-0", clienteId: 10, cliente_nombre_somos: "Transportes Rápidos del Sur Ltda.",
+      numero_propuesta: "PROP-2025-001", pte: "PTE998", tipo_servicio: "Inspectoría",
+      meses_propuesta: 8, cantidad_horas: 80,
+      fecha_propuesta: d("2025-04-01"), fecha_vencimiento: d("2025-04-30"),
+      valor_propuesta: 27_500_000n, estado: "APROBADO",
+      observaciones: "Cliente aceptó condiciones. Inicio en mayo 2025.",
+      comercialId: com2.id_comercial, contratoId: cTRSur.id_contrato,
+    }}),
+    prisma.propuesta.create({ data: {
+      nit: "860.007.373-1", clienteId: 1, cliente_nombre_somos: "ARL Colmena",
+      numero_propuesta: "PROP-2025-002", pte: "PTE739", tipo_servicio: "SST",
+      meses_propuesta: 12, cantidad_horas: 144,
+      fecha_propuesta: d("2025-11-15"), fecha_vencimiento: d("2025-12-15"),
+      valor_propuesta: 52_800_000n, estado: "APROBADO",
+      observaciones: "Renovación de contrato anual aprobada por el cliente.",
+      comercialId: com1.id_comercial, contratoId: cColmena.id_contrato,
+    }}),
+
+    // PENDIENTES — en evaluación
+    prisma.propuesta.create({ data: {
+      nit: "830.114.200-5", clienteId: 0, cliente_nombre_somos: "Almacenes Éxito S.A.",
+      numero_propuesta: "PROP-2026-001", pte: "PTE739", tipo_servicio: "SST",
+      meses_propuesta: 6, cantidad_horas: 72,
+      fecha_propuesta: d("2026-03-10"), fecha_vencimiento: d("2026-04-10"),
+      valor_propuesta: 28_000_000n, estado: "PENDIENTE",
+      observaciones: "En revisión por el área de compras del cliente.",
+      comercialId: com1.id_comercial,
+    }}),
+    prisma.propuesta.create({ data: {
+      nit: "900.777.123-6", clienteId: 0, cliente_nombre_somos: "Mineros del Pacífico SAS",
+      numero_propuesta: "PROP-2026-002", pte: "PTE998", tipo_servicio: "Inspectoría",
+      meses_propuesta: 3, cantidad_horas: 60,
+      fecha_propuesta: d("2026-04-01"), fecha_vencimiento: d("2026-04-30"),
+      valor_propuesta: 15_600_000n, estado: "PENDIENTE",
+      observaciones: "Pendiente firma de acuerdo de confidencialidad.",
+      comercialId: com3.id_comercial,
+    }}),
+    prisma.propuesta.create({ data: {
+      nit: "800.654.321-9", clienteId: 0, cliente_nombre_somos: "Constructora Palonegro Ltda.",
+      numero_propuesta: "PROP-2026-003", pte: "PTE994", tipo_servicio: "Consultoría",
+      meses_propuesta: 4, cantidad_horas: 48,
+      fecha_propuesta: d("2026-04-15"), fecha_vencimiento: d("2026-05-15"),
+      valor_propuesta: 22_400_000n, estado: "PENDIENTE",
+      observaciones: "Primera reunión agendada para el 22 de abril.",
+      comercialId: com2.id_comercial,
+    }}),
+
+    // RECHAZADAS
+    prisma.propuesta.create({ data: {
+      nit: "900.444.888-2", clienteId: 0, cliente_nombre_somos: "Acerías del Norte S.A.",
+      numero_propuesta: "PROP-2025-003", pte: "PTE998", tipo_servicio: "SST",
+      meses_propuesta: 12, cantidad_horas: 200,
+      fecha_propuesta: d("2025-06-01"), fecha_vencimiento: d("2025-06-30"),
+      valor_propuesta: 65_000_000n, estado: "RECHAZADO",
+      observaciones: "Cliente optó por proveedor local con menor costo.",
+      comercialId: com1.id_comercial,
+    }}),
+    prisma.propuesta.create({ data: {
+      nit: "890.500.111-7", clienteId: 0, cliente_nombre_somos: "Lácteos del Llano S.A.S",
+      numero_propuesta: "PROP-2026-004", pte: "PTE739", tipo_servicio: "SST",
+      meses_propuesta: 6, cantidad_horas: 60,
+      fecha_propuesta: d("2026-02-20"), fecha_vencimiento: d("2026-03-20"),
+      valor_propuesta: 18_000_000n, estado: "RECHAZADO",
+      observaciones: "Presupuesto del cliente no cubre el alcance propuesto.",
+      comercialId: com3.id_comercial,
+    }}),
+  ]);
+
   console.log(`
 ✅ Seed completado:
    • 3 comerciales
    • 2 secciones + 8 categorías de presupuesto
-   • 10 contratos (7 activos, 2 vencidos, 1 pendiente)
+   • 10 contratos (7 activos, 2 vencidos, 1 suspendido)
    • ${await prisma.factura.count()} facturas
    • ${await prisma.obligaciones.count()} obligaciones
+   • ${await prisma.propuesta.count()} propuestas (3 aprobadas, 3 pendientes, 2 rechazadas)
   `);
 }
 
